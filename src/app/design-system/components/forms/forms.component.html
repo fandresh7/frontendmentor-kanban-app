@@ -8,7 +8,7 @@
         <input
           type="checkbox"
           id="checkbox-idle"
-          class="form-checkbox text-theme-primary dark:bg-theme-charcoal w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+          class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
         <label
           for="checkbox-idle"
           class="w-full text-theme-dark dark:text-theme-white">
@@ -20,7 +20,7 @@
         <input
           type="checkbox"
           id="checkbox-hovered"
-          class="form-checkbox w-4 h-4 text-theme-primary dark:bg-theme-charcoal border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+          class="w-4 h-4 text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
         <label
           for="checkbox-hovered"
           class="w-full text-theme-dark dark:text-theme-white">
@@ -32,7 +32,7 @@
         <input
           type="checkbox"
           id="checkbox-completed"
-          class="form-checkbox w-4 h-4 text-theme-primary dark:bg-theme-charcoal border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+          class="w-4 h-4 text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
         <label
           for="checkbox-completed"
           class="w-full text-theme-dark/50 dark:text-theme-white/50 font-semibold line-through">
@@ -49,20 +49,20 @@
       <div>
         <label
           for="text-idle"
-          class="text-theme-gray-light dark:text-theme-white block mb-1">
+          class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
           Text Field (Idle)
         </label>
         <input
           type="text"
           id="text-idle"
           placeholder="Enter task name"
-          class="form-input w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+          class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
       </div>
       <!-- Error Text Field -->
       <div>
         <label
           for="text-error"
-          class="text-theme-gray-light dark:text-theme-white block mb-1">
+          class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
           Text Field (Error)
         </label>
         <div class="relative">
@@ -70,7 +70,7 @@
             type="text"
             id="text-error"
             placeholder="Enter task name"
-            class="form-input w-full border border-theme-red-dark text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-red-dark" />
+            class="w-full border border-theme-red-dark text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-red-dark" />
           <p class="absolute right-3 top-1/2 transform -translate-y-1/2 text-theme-red-dark text-xs">Can’t be empty</p>
         </div>
       </div>
@@ -85,12 +85,12 @@
       <div>
         <label
           for="dropdown-idle"
-          class="text-theme-gray-light dark:text-theme-white block mb-1">
+          class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
           Dropdown (Idle)
         </label>
         <select
           id="dropdown-idle"
-          class="form-select w-full border text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary">
+          class="w-full border text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary">
           <option>Todo</option>
           <option>Doing</option>
           <option>Done</option>
