@@ -1,0 +1,22 @@
+:host {
+  display: grid;
+  height: 100vh;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'header header'
+    'sidebar content'
+  ;
+}
+
+main-header {
+  grid-area: header;
+}
+
+sidebar {
+  grid-area: sidebar;
+}
+
+main {
+  grid-area: content;
+}
