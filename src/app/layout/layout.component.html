@@ -1,18 +1,29 @@
 <main-header></main-header>
 
 <sidebar
-  class="absolute md:static top-0 overflow-hidden transition-[width] duration-500 ease-in-out"
+  class="absolute md:static w-max top-20 mx-auto left-0 right-0 overflow-hidden transition-[width] duration-500 ease-in-out z-10"
   [ngClass]="{
     'hidden md:block md:w-0': !sidebar(),
     'block md:w-72': sidebar()
   }">
 </sidebar>
 
-<main class="h-full overflow-y-auto">
-  <button
-    class="m-4"
-    (click)="sidebarService.toggleSidebar()">
-    x
-  </button>
+<main class="h-full relative overflow-y-auto">
+  @if (sidebar()) {
+    <!-- background when sidebar is open in mobile -->
+    <div
+      class="block md:hidden absolute h-full w-full bg-black/50"
+      (click)="sidebarService.toggleSidebar()"></div>
+  }
+
+  @if (!sidebar()) {
+    <!-- show sidebar -->
+    <section
+      class="hidden md:flex items-center justify-center absolute bottom-8 left-0 text-theme-white bg-theme-primary rounded-r-full p-4 pl-3 cursor-pointer"
+      (click)="sidebarService.toggleSidebar()">
+      <show-icon></show-icon>
+    </section>
+  }
+
   <router-outlet></router-outlet>
 </main>

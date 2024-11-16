@@ -1,0 +1,12 @@
+.board-active::before {
+  content: '';
+  position: absolute;
+
+  width: 2rem;
+  height: 100%;
+  
+  top: 0;
+  left: -24px;
+  
+  @apply bg-theme-primary
+}
