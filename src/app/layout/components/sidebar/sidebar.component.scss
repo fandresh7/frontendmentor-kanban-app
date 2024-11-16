@@ -1,4 +1,4 @@
-.board-active::before {
+.board-active::before, .board-hover:hover::before {
   content: '';
   position: absolute;
 
@@ -6,7 +6,13 @@
   height: 100%;
   
   top: 0;
-  left: -24px;
-  
-  @apply bg-theme-primary
+  left: -32px;
+}
+
+.board-active::before {
+  @apply bg-theme-primary 
+}
+
+.board-hover:hover::before {
+  @apply bg-theme-primary/10 dark:hover:bg-theme-white
 }
