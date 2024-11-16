@@ -5,14 +5,30 @@
     <logo-icon></logo-icon>
     <p class="text-3xl font-extrabold hidden md:block">Kanban</p>
   </div>
-  <div
-    class="text-lg font-bold text-theme-dark dark:text-theme-white flex items-center gap-2 grow p-4 md:p-6 md:border-b border-theme-light-blue dark:border-theme-gray-dark"
-    (click)="sidebarService.toggleSidebar()">
-    <span>Platform Lauch</span>
+  <div class="font-bold text-theme-dark dark:text-theme-white flex items-center gap-2 grow p-4 md:p-6 md:border-b border-theme-light-blue dark:border-theme-gray-dark">
+    <span
+      class="block md:hidden text-lg"
+      (click)="sidebarService.toggleSidebar()">
+      Platform Lauch
+    </span>
+    <span class="hidden md:block md:text-2xl">Platform Lauch</span>
+
     <div
       class="md:hidden text-theme-primary transition-transform duration-500"
       [class]="{ 'rotate-180': sidebar() }">
       <down-arrow-icon></down-arrow-icon>
+    </div>
+
+    <div class="flex items-center gap-2 ml-auto">
+      <button class="bg-theme-primary text-theme-white py-3 p-6 md:px-8 rounded-full font-medium transition hover:bg-theme-secondary">
+        <div class="flex gap-2 items-center">
+          <plus-icon></plus-icon>
+          <span class="hidden md:block">Add New Task</span>
+        </div>
+      </button>
+      <button class="px-4 text-theme-gray-light hover:text-theme-primary transition-colors">
+        <ellipsis-icon></ellipsis-icon>
+      </button>
     </div>
   </div>
 </header>
