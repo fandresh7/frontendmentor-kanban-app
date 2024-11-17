@@ -1,0 +1,64 @@
+<div class="flex gap-2 items-center justify-between">
+  <h2 class="font-bold text-xl mb-4">Add New Board</h2>
+  <div
+    class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark"
+    (click)="closeModal()">
+    <close-icon></close-icon>
+  </div>
+</div>
+
+<form
+  class="flex flex-col gap-6 items-stretch max-w-full w-[500px]"
+  [formGroup]="form">
+  <div>
+    <label
+      for="text-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
+      Board Name
+    </label>
+    <input
+      type="text"
+      id="text-idle"
+      placeholder="e.g. Web Design"
+      class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label
+      for="text-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block">
+      Columns
+    </label>
+    <div class="flex items-center gap-4">
+      <input
+        type="text"
+        id="text-idle"
+        placeholder="e.g. Make coffee"
+        class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+
+      <div class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark">
+        <close-icon></close-icon>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <input
+        type="text"
+        id="text-idle"
+        placeholder="e.g. Make coffee"
+        class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+
+      <div class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark">
+        <close-icon></close-icon>
+      </div>
+    </div>
+    <button
+      class="bg-theme-primary/10 w-full leading-6 text-theme-primary py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-primary/25 hover:text-theme-primary dark:bg-theme-white dark:hover:bg-theme-white">
+      <div class="flex gap-2 items-center justify-center">
+        <plus-icon></plus-icon>
+        Add New Column
+      </div>
+    </button>
+  </div>
+
+  <button class="bg-theme-primary w-full leading-6 text-theme-white py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-secondary">Create Board</button>
+</form>

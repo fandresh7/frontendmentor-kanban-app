@@ -13,7 +13,9 @@
       <board-icon></board-icon>
       <p class="font-bold">Roadmap</p>
     </div>
-    <div class="board-hover relative flex items-center gap-3 text-theme-primary p-3 rounded-r-full cursor-pointer hover:bg-theme-primary/10 dark:hover:bg-theme-white">
+    <div
+      class="board-hover relative flex items-center gap-3 text-theme-primary p-3 rounded-r-full cursor-pointer hover:bg-theme-primary/10 dark:hover:bg-theme-white"
+      (click)="openAddEditModal()">
       <board-icon></board-icon>
       <div class="flex gap-0.5 items-center">
         <plus-icon></plus-icon>

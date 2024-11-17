@@ -1,0 +1,12 @@
+<div class="flex flex-col gap-6 max-w-[450px]">
+  <h2 class="text-lg font-bold text-theme-red-dark">Delete this Board?</h2>
+  <p class="text-balance font-normal text-sm text-theme-gray-light">Are you sure you want to delete the ‘Platform Launch’ board? This action will remove all columns and tasks and cannot be reversed.</p>
+  <div class="flex flex-col md:flex-row gap-4 items-center">
+    <button class="bg-theme-red-dark w-full leading-6 text-theme-white py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-red-light">Delete</button>
+    <button
+      class="bg-theme-primary/10 w-full leading-6 text-theme-primary py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-primary/25 hover:text-theme-primary dark:bg-theme-white dark:hover:bg-theme-white"
+      (click)="closeModal()">
+      Cancel
+    </button>
+  </div>
+</div>

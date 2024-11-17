@@ -1,0 +1,57 @@
+<div class="flex flex-col gap-4 max-w-[600px]">
+  <div class="flex gap-2 items-center justify-between">
+    <h2 class="font-bold text-xl mb-4 max-w-[480px]">Research pricing points of various competitors and trial different business models</h2>
+    <div
+      class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark"
+      (click)="closeModal()">
+      <close-icon></close-icon>
+    </div>
+  </div>
+
+  <p>We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.</p>
+
+  <div class="flex flex-col gap-2">
+    <label
+      for="dropdown-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block">
+      Subtasks (2 of 3)
+    </label>
+    <div class="flex items-center space-x-4 bg-theme-light-gray dark:bg-theme-darker py-2.5 px-4 rounded-md transition hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25">
+      <input
+        type="checkbox"
+        id="checkbox-idle"
+        class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+      <label
+        for="checkbox-idle"
+        class="w-full text-theme-dark dark:text-theme-white">
+        Idle
+      </label>
+    </div>
+    <div class="flex items-center space-x-4 bg-theme-light-gray dark:bg-theme-darker py-2.5 px-4 rounded-md transition hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25">
+      <input
+        type="checkbox"
+        id="checkbox-idle"
+        class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+      <label
+        for="checkbox-idle"
+        class="w-full text-theme-dark dark:text-theme-white">
+        Idle
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <label
+      for="dropdown-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
+      Current Status
+    </label>
+    <select
+      id="dropdown-idle"
+      class="w-full border text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary">
+      <option>Todo</option>
+      <option>Doing</option>
+      <option>Done</option>
+    </select>
+  </div>
+</div>

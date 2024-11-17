@@ -1,0 +1,91 @@
+<div class="flex gap-2 items-center justify-between">
+  <h2 class="font-bold text-xl mb-4">Add New Task</h2>
+  <div
+    class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark"
+    (click)="closeModal()">
+    <close-icon></close-icon>
+  </div>
+</div>
+
+<form
+  class="flex flex-col gap-6 items-stretch max-w-full w-[500px]"
+  [formGroup]="form">
+  <div>
+    <label
+      for="text-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
+      Title
+    </label>
+    <input
+      type="text"
+      id="text-idle"
+      placeholder="Enter task name"
+      class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+  </div>
+
+  <div>
+    <label
+      for="text-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
+      Description
+    </label>
+    <textarea
+      class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary"
+      rows="6"
+      placeholder="e.g. It’s always good to take a break. This 15 minute break will recharge the batteries a little."></textarea>
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label
+      for="text-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block">
+      Subtasks
+    </label>
+    <div class="flex items-center gap-4">
+      <input
+        type="text"
+        id="text-idle"
+        placeholder="e.g. Make coffee"
+        class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+
+      <div class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark">
+        <close-icon></close-icon>
+      </div>
+    </div>
+    <div class="flex items-center gap-4">
+      <input
+        type="text"
+        id="text-idle"
+        placeholder="e.g. Make coffee"
+        class="w-full border border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary" />
+
+      <div class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark">
+        <close-icon></close-icon>
+      </div>
+    </div>
+    <button
+      class="bg-theme-primary/10 w-full leading-6 text-theme-primary py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-primary/25 hover:text-theme-primary dark:bg-theme-white dark:hover:bg-theme-white">
+      <div class="flex gap-2 items-center justify-center">
+        <plus-icon></plus-icon>
+        Add New Subtask
+      </div>
+    </button>
+  </div>
+
+  <div>
+    <label
+      for="dropdown-idle"
+      class="text-theme-gray-light text-sm font-bold dark:text-theme-white block mb-2">
+      Status
+    </label>
+    <select
+      id="dropdown-idle"
+      class="w-full border text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal rounded-md px-4 py-2.5 focus:outline-none focus:ring-0 focus:border-theme-primary">
+      <option>Todo</option>
+      <option>Doing</option>
+      <option>Done</option>
+    </select>
+  </div>
+
+  <button class="bg-theme-primary w-full leading-6 text-theme-white py-2 px-8 rounded-full text-sm font-medium transition hover:bg-theme-secondary">Create Task</button>
+</form>
