@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { SystemComponent } from './system.component'
+import { TaskCardComponent } from './task-card.component'
 
-describe('SystemComponent', () => {
-  let component: SystemComponent
-  let fixture: ComponentFixture<SystemComponent>
+describe('TaskCardComponent', () => {
+  let component: TaskCardComponent
+  let fixture: ComponentFixture<TaskCardComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SystemComponent]
+      imports: [TaskCardComponent]
     }).compileComponents()
 
-    fixture = TestBed.createComponent(SystemComponent)
+    fixture = TestBed.createComponent(TaskCardComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

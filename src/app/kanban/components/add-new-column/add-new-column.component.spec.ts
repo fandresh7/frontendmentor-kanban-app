@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { SystemComponent } from './system.component'
+import { AddNewColumnComponent } from './add-new-column.component'
 
-describe('SystemComponent', () => {
-  let component: SystemComponent
-  let fixture: ComponentFixture<SystemComponent>
+describe('AddNewColumnComponent', () => {
+  let component: AddNewColumnComponent
+  let fixture: ComponentFixture<AddNewColumnComponent>
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SystemComponent]
+      imports: [AddNewColumnComponent]
     }).compileComponents()
 
-    fixture = TestBed.createComponent(SystemComponent)
+    fixture = TestBed.createComponent(AddNewColumnComponent)
     component = fixture.componentInstance
     fixture.detectChanges()
   })

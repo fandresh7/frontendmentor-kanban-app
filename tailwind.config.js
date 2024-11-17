@@ -24,7 +24,11 @@ module.exports = {
         'theme-secondary': '#A8A4FF',   // Main Purple (Hover)
         'theme-red-dark': '#EA5555',    // Red
         'theme-red-light': '#FF9898',   // Red (Hover)
-      }
+      },
+      backgroundImage: {
+        'custom-gradient': 'linear-gradient(to right, rgba(233, 239, 250, 1) 0%, rgba(233, 239, 250, 0.5) 100%)',
+        'custom-gradient-dark': 'linear-gradient(180deg, rgba(43,44,55,1) 100%, rgba(43,44,55,0.5) 100%)'
+      },
     }
   },
   plugins: [

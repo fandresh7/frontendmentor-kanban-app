@@ -1,10 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
-import { plusIconComponent } from '../../../shared/components/icons.component'
+import { EmptyBoardComponent } from '../../components/empty-board/empty-board.component'
+import { BoardComponent } from '../../components/board/board.component'
 
 @Component({
   selector: 'home',
   standalone: true,
-  imports: [plusIconComponent],
+  imports: [EmptyBoardComponent, BoardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -1,11 +1,11 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core'
 
 @Component({
-  selector: 'forms',
+  selector: 'task-card',
   standalone: true,
   imports: [],
-  templateUrl: './forms.component.html',
-  styleUrl: './forms.component.scss',
+  templateUrl: './task-card.component.html',
+  styleUrl: './task-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormsComponent {}
+export class TaskCardComponent {}

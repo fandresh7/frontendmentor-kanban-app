@@ -19,7 +19,7 @@
   @if (!sidebar()) {
     <!-- show sidebar -->
     <section
-      class="hidden md:flex items-center justify-center absolute bottom-8 left-0 text-theme-white bg-theme-primary rounded-r-full p-4 pl-3 cursor-pointer"
+      class="hidden md:flex items-center justify-center absolute bottom-8 left-0 text-theme-white bg-theme-primary hover:bg-theme-secondary transition-colors rounded-r-full p-4 pl-3 cursor-pointer"
       (click)="sidebarService.toggleSidebar()">
       <show-icon></show-icon>
     </section>
