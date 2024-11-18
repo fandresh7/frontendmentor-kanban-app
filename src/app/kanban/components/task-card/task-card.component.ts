@@ -14,6 +14,8 @@ export class TaskCardComponent {
   dialog = inject(Dialog)
 
   openTaskModal() {
-    this.dialog.open(TaskModalComponent)
+    this.dialog.open(TaskModalComponent, {
+      autoFocus: ''
+    })
   }
 }

@@ -1,28 +1,35 @@
-import { isPlatformBrowser } from '@angular/common'
-import { inject, Injectable, PLATFORM_ID, signal } from '@angular/core'
-import { debounceTime, fromEvent, map } from 'rxjs'
+import { BreakpointObserver } from '@angular/cdk/layout'
+import { afterNextRender, inject, Injectable, signal } from '@angular/core'
+import { first } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
-  platformId = inject(PLATFORM_ID)
-  sidebar = signal<boolean>(true)
+  breakpointObserver = inject(BreakpointObserver).observe(['(max-width: 768px)'])
+
+  sidebar = signal<boolean>(false)
 
   constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      const resize$ = fromEvent(window, 'resize').pipe(
-        debounceTime(100),
-        map(event => {
-          const windowElement = event.currentTarget as Window
-          return windowElement.innerWidth
-        })
-      )
+    afterNextRender(() => {
+      this.initializeSidebarState()
+    })
+  }
 
-      resize$.subscribe(width => {
-        this.sidebar.set(width > 768)
-      })
-    }
+  // Initializes the sidebar state based on screen size.
+  // If the screen width is less than or equal to 768px (mobile view), the sidebar is hidden.
+  // If the screen width is greater than 768px (web view), the sidebar is visible.
+  private initializeSidebarState() {
+    this.breakpointObserver.subscribe(({ matches }) => {
+      this.sidebar.set(!matches)
+    })
+  }
+
+  // Close sidebar in mobile when change board or create a new one.
+  closeSidebar() {
+    this.breakpointObserver.pipe(first()).subscribe(({ matches }) => {
+      if (matches) this.sidebar.set(false)
+    })
   }
 
   toggleSidebar() {

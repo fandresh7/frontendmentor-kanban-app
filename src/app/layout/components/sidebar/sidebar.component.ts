@@ -23,6 +23,7 @@ export class SidebarComponent {
   darkMode = this.darkModeService.darkMode
 
   openAddEditModal() {
+    this.sidebarService.closeSidebar()
     this.dialog.open(AddEditBoardModalComponent)
   }
 }

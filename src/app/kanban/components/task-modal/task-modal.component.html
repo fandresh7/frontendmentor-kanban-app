@@ -1,11 +1,12 @@
 <div class="flex flex-col gap-4 max-w-[600px]">
-  <div class="flex gap-2 items-center justify-between">
+  <div class="flex gap-2 items-start justify-between">
     <h2 class="font-bold text-xl mb-4 max-w-[480px]">Research pricing points of various competitors and trial different business models</h2>
-    <div
-      class="text-theme-gray-light cursor-pointer transition-colors hover:text-theme-red-dark"
-      (click)="closeModal()">
-      <close-icon></close-icon>
-    </div>
+
+    <button
+      class="relative px-4 py-2 text-theme-gray-light hover:text-theme-primary transition-colors rounded-full hover:bg-theme-light-gray dark:hover:bg-theme-darker"
+      (click)="toggleActionDropdown()">
+      <ellipsis-icon></ellipsis-icon>
+    </button>
   </div>
 
   <p>We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.</p>
@@ -55,3 +56,18 @@
     </select>
   </div>
 </div>
+
+@if (actionDropdown()) {
+  <div class="absolute flex flex-col items-start font-normal gap-4 right-4 top-16 w-40 p-4 bg-theme-white dark:bg-theme-darker text-theme-gray-light rounded-lg z-10 shadow-md">
+    <p
+      class="cursor-pointer hover:text-theme-primary transition-colors"
+      (click)="openAddEditTaskModal()">
+      Edit Task
+    </p>
+    <p
+      class="cursor-pointer hover:text-theme-red-dark transition-colors"
+      (click)="openDeleteTaskModal()">
+      Delete Task
+    </p>
+  </div>
+}
