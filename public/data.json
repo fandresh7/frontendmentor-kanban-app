@@ -1,0 +1,200 @@
+{
+  "boards": [
+    {
+      "name": "Platform Launch",
+      "id": "d83b6447-322c-4c1e-b3ce-84c72a48076b",
+      "columns": [
+        {
+          "name": "Todo",
+          "id": "ebcb99b9-6403-44d2-8dbb-6a6dc3e2e0d8",
+          "tasks": [
+            {
+              "title": "Build UI for onboarding flow",
+              "description": "",
+              "status": "Todo",
+              "id": "694c5e63-e0eb-4a27-bee7-0ae0171e1fda",
+              "subtasks": [
+                {
+                  "title": "Sign up page",
+                  "isCompleted": true,
+                  "id": "d3b2f2d4-05fa-41e1-9fa2-516d21ea6135"
+                },
+                {
+                  "title": "Sign in page",
+                  "isCompleted": false,
+                  "id": "c07a5da6-8aed-4ce7-974d-c82a99ac3c1a"
+                },
+                {
+                  "title": "Welcome page",
+                  "isCompleted": false,
+                  "id": "69e70a9d-49b3-4e3c-868b-f70844d19a2d"
+                }
+              ]
+            },
+            {
+              "title": "Build UI for search",
+              "description": "",
+              "status": "Todo",
+              "id": "ee805149-10a4-4d79-a423-ba95a858cfd1",
+              "subtasks": [
+                {
+                  "title": "Search page",
+                  "isCompleted": false,
+                  "id": "3a69bf69-bf7c-423a-adc2-4aabc0f7fa02"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Doing",
+          "id": "1dbfab6f-c1a7-41a6-9be1-786aa633bb00",
+          "tasks": [
+            {
+              "title": "Design settings and search pages",
+              "description": "",
+              "status": "Doing",
+              "id": "2b948e26-af10-4a5a-a471-88b305f9e3f9",
+              "subtasks": [
+                {
+                  "title": "Settings - Account page",
+                  "isCompleted": true,
+                  "id": "f70368fd-7064-4801-9d2f-9b224fa6f3d4"
+                },
+                {
+                  "title": "Settings - Billing page",
+                  "isCompleted": true,
+                  "id": "7f738a9d-6107-40a6-8121-fee56d8247c4"
+                },
+                {
+                  "title": "Search page",
+                  "isCompleted": false,
+                  "id": "bc7d6550-a97f-4821-8577-e390645b8179"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Done",
+          "id": "c0bf429d-0aff-4285-ad76-c5f7b5254b57",
+          "tasks": [
+            {
+              "title": "Conduct 5 wireframe tests",
+              "description": "Ensure the layout continues to make sense and we have strong buy-in from potential users.",
+              "status": "Done",
+              "id": "a2f4b53d-c083-4ad4-8d2e-6c53fab1b3a6",
+              "subtasks": [
+                {
+                  "title": "Complete 5 wireframe prototype tests",
+                  "isCompleted": true,
+                  "id": "4fdc92eb-f793-4198-8e6c-391dc1b1b286"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Marketing Plan",
+      "id": "53fa8d00-da89-4ef8-9007-1b1b2508d1ca",
+      "columns": [
+        {
+          "name": "Todo",
+          "id": "9a7eb9e6-b9b6-4322-b63d-bf665b167086",
+          "tasks": [
+            {
+              "title": "Plan Product Hunt launch",
+              "description": "",
+              "status": "Todo",
+              "id": "6ba18a84-24f2-4cd4-aa62-015104cc2700",
+              "subtasks": [
+                {
+                  "title": "Find hunter",
+                  "isCompleted": false,
+                  "id": "e9ab68af-7cd4-4eb3-93a0-a9f8b93048d7"
+                },
+                {
+                  "title": "Gather assets",
+                  "isCompleted": false,
+                  "id": "cc0eb308-04a0-452d-8d33-e24853a53f65"
+                },
+                {
+                  "title": "Draft product page",
+                  "isCompleted": false,
+                  "id": "34953b43-cda8-4af2-908c-73f1c191d0db"
+                },
+                {
+                  "title": "Notify customers",
+                  "isCompleted": false,
+                  "id": "73892fbf-861b-4bec-87d7-79e7021904cb"
+                },
+                {
+                  "title": "Notify network",
+                  "isCompleted": false,
+                  "id": "99c33800-c916-49f3-a637-16a184ca0e26"
+                },
+                {
+                  "title": "Launch!",
+                  "isCompleted": false,
+                  "id": "1961cf57-5e66-4b00-b8c6-de1515df5f02"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Doing",
+          "id": "364e078b-4315-4b24-a559-0eb7bf72f5a2",
+          "tasks": []
+        },
+        {
+          "name": "Done",
+          "id": "8fa7b4b6-2159-49fb-80ec-92723acb5a41",
+          "tasks": []
+        }
+      ]
+    },
+    {
+      "name": "Roadmap",
+      "id": "11e2cb0d-93b6-4b1b-8b37-dfa29cb8166c",
+      "columns": [
+        {
+          "name": "Now",
+          "id": "a68df5a0-4dac-44fa-a9a4-d9f733b3eaeb",
+          "tasks": [
+            {
+              "title": "Launch version one",
+              "description": "",
+              "status": "Todo",
+              "id": "57b0443d-10b9-4f84-916f-affa78d970fb",
+              "subtasks": [
+                {
+                  "title": "Launch privately to our waitlist",
+                  "isCompleted": false,
+                  "id": "1ec5f1d6-45a9-42c1-9e1d-a24b67a6807d"
+                },
+                {
+                  "title": "Launch publicly on PH, HN, etc.",
+                  "isCompleted": false,
+                  "id": "f2b5900f-7854-4efd-887c-45ca48eb8688"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Next",
+          "id": "1f5db991-beb9-45d0-ad2a-040e980cbfa0",
+          "tasks": []
+        },
+        {
+          "name": "Later",
+          "id": "5e2a7f8c-191b-44a6-a6e1-0cbf0de1bb65",
+          "tasks": []
+        }
+      ]
+    }
+  ]
+}
