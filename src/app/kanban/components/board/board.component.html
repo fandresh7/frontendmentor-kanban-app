@@ -1,7 +1,7 @@
 <section class="w-full grid items-stretch justify-stretch grid-flow-col auto-cols-[280px] gap-4 overflow-x-auto">
-  <column></column>
-  <column></column>
-  <column></column>
+  @for (column of board().columns; track column.id) {
+    <column [column]="column"></column>
+  }
 
   <add-new-column></add-new-column>
 </section>

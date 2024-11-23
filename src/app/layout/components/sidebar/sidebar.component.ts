@@ -1,29 +1,26 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
-import { BoardIconComponent, plusIconComponent, SunIconComponent, MoonIconComponent, HideIconComponent } from '../../../shared/components/icons.component'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { SunIconComponent, MoonIconComponent, HideIconComponent } from '../../../shared/components/icons.component'
 import { SidebarService } from '../../services/sidebar.service'
 import { DarkModeService } from '../../../shared/services/dark-mode.service'
-import { Dialog, DialogModule } from '@angular/cdk/dialog'
-import { AddEditBoardModalComponent } from '../../../kanban/components/add-edit-board-modal/add-edit-board-modal.component'
+import { BoardService } from '../../../kanban/services/board.service'
+import { BoardListComponent } from '../../../kanban/components/board-list/board-list.component'
 
 @Component({
   selector: 'sidebar',
   standalone: true,
-  imports: [DialogModule, BoardIconComponent, plusIconComponent, SunIconComponent, MoonIconComponent, HideIconComponent],
+  imports: [SunIconComponent, MoonIconComponent, HideIconComponent, BoardListComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SidebarComponent {
-  dialog = inject(Dialog)
-
   sidebarService = inject(SidebarService)
   darkModeService = inject(DarkModeService)
 
-  sidebar = this.sidebarService.sidebar
-  darkMode = this.darkModeService.darkMode
+  boardService = inject(BoardService)
 
-  openAddEditModal() {
-    this.sidebarService.closeSidebar()
-    this.dialog.open(AddEditBoardModalComponent)
-  }
+  sidebar = computed(() => this.sidebarService.sidebar)
+  darkMode = computed(() => this.darkModeService.darkMode)
+
+  boards = computed(() => this.boardService.boards())
 }

@@ -14,14 +14,8 @@ export interface Task {
   id: string
   title: string
   description: string
-  status: Status
+  status: string
   subtasks: Subtask[]
-}
-
-export enum Status {
-  Doing = 'Doing',
-  Done = 'Done',
-  Todo = 'Todo'
 }
 
 export interface Subtask {

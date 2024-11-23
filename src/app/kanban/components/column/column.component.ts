@@ -1,10 +1,12 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 import { TaskCardComponent } from '../task-card/task-card.component'
+import { Column } from '../../interfaces/boards'
+import { UpperCasePipe } from '@angular/common'
 
 @Component({
   selector: 'column',
   standalone: true,
-  imports: [TaskCardComponent],
+  imports: [TaskCardComponent, UpperCasePipe],
   templateUrl: './column.component.html',
   styleUrl: './column.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -12,4 +14,6 @@ import { TaskCardComponent } from '../task-card/task-card.component'
     class: 'max-h-full'
   }
 })
-export class ColumnComponent {}
+export class ColumnComponent {
+  column = input.required<Column>()
+}

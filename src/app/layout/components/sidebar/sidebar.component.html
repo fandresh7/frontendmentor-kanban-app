@@ -1,28 +1,6 @@
 <aside class="relative w-72 flex flex-col gap-6 md:h-full rounded-lg md:rounded-none p-6 bg-theme-white dark:bg-theme-charcoal md:border-r border-theme-light-blue dark:border-theme-gray-dark">
-  <p class="text-theme-gray-light text-sm font-bold tracking-widest">ALL BOARDS (3)</p>
-  <section class="flex flex-col">
-    <div class="board-active relative flex items-center gap-3 bg-theme-primary p-3 rounded-r-full text-theme-white cursor-pointer">
-      <board-icon></board-icon>
-      <p class="font-bold">Platform Lauch</p>
-    </div>
-    <div class="board-hover relative flex items-center gap-3 text-theme-gray-light p-3 rounded-r-full cursor-pointer hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white">
-      <board-icon></board-icon>
-      <p class="font-bold">Marketing Plan</p>
-    </div>
-    <div class="board-hover relative flex items-center gap-3 text-theme-gray-light p-3 rounded-r-full cursor-pointer hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white">
-      <board-icon></board-icon>
-      <p class="font-bold">Roadmap</p>
-    </div>
-    <div
-      class="board-hover relative flex items-center gap-3 text-theme-primary p-3 rounded-r-full cursor-pointer hover:bg-theme-primary/10 dark:hover:bg-theme-white"
-      (click)="openAddEditModal()">
-      <board-icon></board-icon>
-      <div class="flex gap-0.5 items-center">
-        <plus-icon></plus-icon>
-        <p class="font-bold">Create New Board</p>
-      </div>
-    </div>
-  </section>
+  <p class="text-theme-gray-light text-sm font-bold tracking-widest">ALL BOARDS ({{ boards().length }})</p>
+  <board-list></board-list>
 
   <section class="flex items-center justify-center gap-2 w-full bg-theme-light-gray dark:bg-theme-darker px-4 py-3 rounded-lg text-theme-gray-light md:mt-auto">
     <sun-icon></sun-icon>
@@ -37,7 +15,7 @@
   </section>
 
   <section
-    class="board-hover relative hidden md:flex gap-2 items-center text-theme-gray-light p-3 rounded-r-full cursor-pointer hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white"
+    class="sidebar-hover relative hidden md:flex gap-2 items-center text-theme-gray-light p-3 rounded-r-full cursor-pointer hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white"
     (click)="sidebarService.toggleSidebar()">
     <hide-icon></hide-icon>
     <p class="text-sm font-bold">Hide Sidebar</p>

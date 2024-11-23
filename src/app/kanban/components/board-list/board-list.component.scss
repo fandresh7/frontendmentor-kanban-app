@@ -1,4 +1,4 @@
-.sidebar-hover:hover::before {
+.board-active::before, .board-hover:hover::before {
   content: '';
   position: absolute;
 
@@ -9,6 +9,10 @@
   left: -32px;
 }
 
-.sidebar-hover:hover::before {
+.board-active::before {
+  @apply bg-theme-primary 
+}
+
+.board-hover:hover::before {
   @apply bg-theme-primary/10 dark:hover:bg-theme-white
 }

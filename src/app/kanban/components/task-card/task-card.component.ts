@@ -1,6 +1,7 @@
 import { Dialog, DialogModule } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core'
 import { TaskModalComponent } from '../task-modal/task-modal.component'
+import { Task } from '../../interfaces/boards'
 
 @Component({
   selector: 'task-card',
@@ -11,6 +12,13 @@ import { TaskModalComponent } from '../task-modal/task-modal.component'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TaskCardComponent {
+  task = input.required<Task>()
+
+  completedSubtasks = computed(() => {
+    const completed = this.task().subtasks.filter(s => s.isCompleted)
+    return completed
+  })
+
   dialog = inject(Dialog)
 
   openTaskModal() {

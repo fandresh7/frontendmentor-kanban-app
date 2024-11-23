@@ -10,9 +10,9 @@
     <span
       class="block md:hidden text-lg"
       (click)="sidebarService.toggleSidebar()">
-      Platform Lauch
+      {{ activeBoard()?.name }}
     </span>
-    <span class="hidden md:block md:text-2xl">Platform Lauch</span>
+    <span class="hidden md:block md:text-2xl">{{ activeBoard()?.name }}</span>
 
     <div
       class="md:hidden text-theme-primary transition-transform duration-500"
