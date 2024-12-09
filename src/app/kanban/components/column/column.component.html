@@ -1,10 +1,12 @@
+@let tasks = column().tasks;
+
 <div class="flex gap-2 items-center mb-6">
   <div class="bg-[#49C4E5] rounded-full w-4 h-4"></div>
-  <span class="font-bold tracking-widest text-theme-gray-light">{{ column().name | uppercase }} ({{ column().tasks.length }})</span>
+  <span class="font-bold tracking-widest text-theme-gray-light">{{ column().name | uppercase }} ({{ tasks.length }})</span>
 </div>
 
 <section class="flex flex-col gap-4 h-[calc(100dvh-12rem)] pb-4 overflow-y-auto">
-  @for (task of column().tasks; track task.id) {
+  @for (task of tasks; track task.id) {
     <task-card [task]="task"></task-card>
   }
 </section>

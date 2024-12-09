@@ -1,7 +1,16 @@
-<section class="w-full grid items-stretch justify-stretch grid-flow-col auto-cols-[280px] gap-4 overflow-x-auto">
-  @for (column of board().columns; track column.id) {
-    <column [column]="column"></column>
-  }
+@let board = activeBoard();
+@let columns = board?.columns ?? [];
 
-  <add-new-column></add-new-column>
-</section>
+@if (board && columns.length > 0) {
+  <section class="w-full grid items-stretch justify-stretch grid-flow-col auto-cols-[280px] gap-4 overflow-x-auto">
+    @for (column of columns; track column.id) {
+      <column [column]="column"></column>
+    }
+
+    <add-new-column></add-new-column>
+  </section>
+} @else {
+  <section class="w-full h-full grid place-items-center text-center">
+    <empty-board></empty-board>
+  </section>
+}

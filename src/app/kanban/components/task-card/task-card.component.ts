@@ -23,7 +23,8 @@ export class TaskCardComponent {
 
   openTaskModal() {
     this.dialog.open(TaskModalComponent, {
-      autoFocus: ''
+      autoFocus: undefined,
+      data: this.task()
     })
   }
 }

@@ -19,8 +19,8 @@ export class SidebarComponent {
 
   boardService = inject(BoardService)
 
-  sidebar = computed(() => this.sidebarService.sidebar)
-  darkMode = computed(() => this.darkModeService.darkMode)
+  sidebar = computed(() => this.sidebarService.sidebar())
+  darkMode = computed(() => this.darkModeService.darkMode())
 
   boards = computed(() => this.boardService.boards())
 }

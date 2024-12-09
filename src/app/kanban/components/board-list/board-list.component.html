@@ -4,7 +4,8 @@
     [ngClass]="{
       'board-active bg-theme-primary text-theme-white': board.id === activeBoard()?.id,
       'board-hover text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white': board.id !== activeBoard()?.id
-    }">
+    }"
+    (click)="changeActiveBoard(board)">
     <board-icon></board-icon>
     <p class="font-bold">{{ board.name }}</p>
   </div>

@@ -1,6 +1,6 @@
-<div class="flex flex-col gap-4 max-w-[600px]">
+<div class="flex flex-col gap-4 max-w-[600px] md:min-w-[500px]">
   <div class="flex gap-2 items-start justify-between">
-    <h2 class="font-bold text-xl mb-4 max-w-[480px]">Research pricing points of various competitors and trial different business models</h2>
+    <h2 class="font-bold text-xl mb-4 max-w-[480px]">{{ data.title }}</h2>
 
     <button
       class="relative px-4 py-2 text-theme-gray-light hover:text-theme-primary transition-colors rounded-full hover:bg-theme-light-gray dark:hover:bg-theme-darker"
@@ -9,7 +9,9 @@
     </button>
   </div>
 
-  <p>We know what we're planning to build for version one. Now we need to finalise the first pricing model we'll use. Keep iterating the subtasks until we have a coherent proposition.</p>
+  @if (data.description) {
+    <p>{{ data.description }}</p>
+  }
 
   <div class="flex flex-col gap-2">
     <label
@@ -17,28 +19,21 @@
       class="text-theme-gray-light text-sm font-bold dark:text-theme-white block">
       Subtasks (2 of 3)
     </label>
-    <div class="flex items-center space-x-4 bg-theme-light-gray dark:bg-theme-darker py-2.5 px-4 rounded-md transition hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25">
-      <input
-        type="checkbox"
-        id="checkbox-idle"
-        class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
-      <label
-        for="checkbox-idle"
-        class="w-full text-theme-dark dark:text-theme-white">
-        Idle
-      </label>
-    </div>
-    <div class="flex items-center space-x-4 bg-theme-light-gray dark:bg-theme-darker py-2.5 px-4 rounded-md transition hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25">
-      <input
-        type="checkbox"
-        id="checkbox-idle"
-        class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
-      <label
-        for="checkbox-idle"
-        class="w-full text-theme-dark dark:text-theme-white">
-        Idle
-      </label>
-    </div>
+
+    @for (subtask of data.subtasks; track subtask.id) {
+      <div class="flex items-center space-x-4 bg-theme-light-gray dark:bg-theme-darker py-2.5 px-4 rounded-md transition hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25">
+        <input
+          type="checkbox"
+          [id]="subtask.id"
+          [checked]="subtask.isCompleted"
+          class="text-theme-primary dark:bg-theme-charcoal dark:checked:bg-theme-primary w-4 h-4 border border-theme-gray-light/25 focus:ring-0 focus:ring-offset-0" />
+        <label
+          [for]="subtask.id"
+          class="w-full text-theme-dark dark:text-theme-white">
+          {{ subtask.title }}
+        </label>
+      </div>
+    }
   </div>
 
   <div>
@@ -61,7 +56,7 @@
   <div class="absolute flex flex-col items-start font-normal gap-4 right-4 top-16 w-40 p-4 bg-theme-white dark:bg-theme-darker text-theme-gray-light rounded-lg z-10 shadow-md">
     <p
       class="cursor-pointer hover:text-theme-primary transition-colors"
-      (click)="openAddEditTaskModal()">
+      (click)="openEditTaskModal()">
       Edit Task
     </p>
     <p

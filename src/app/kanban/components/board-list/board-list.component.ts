@@ -6,6 +6,7 @@ import { BoardService } from '../../services/board.service'
 import { SidebarService } from '../../../layout/services/sidebar.service'
 import { AddEditBoardModalComponent } from '../add-edit-board-modal/add-edit-board-modal.component'
 import { BoardIconComponent, plusIconComponent } from '../../../shared/components/icons.component'
+import { Board } from '../../interfaces/boards'
 
 @Component({
   selector: 'board-list',
@@ -31,5 +32,9 @@ export class BoardListComponent {
   openAddEditModal() {
     this.sidebarService.closeSidebar()
     this.dialog.open(AddEditBoardModalComponent)
+  }
+
+  changeActiveBoard(board: Board) {
+    this.boardService.changeActiveBoard(board)
   }
 }

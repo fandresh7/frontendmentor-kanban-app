@@ -36,4 +36,8 @@ export class BoardService {
       this.state.update(state => ({ ...state, boards, activeBoard }))
     })
   }
+
+  changeActiveBoard(board: Board) {
+    this.state.update(state => ({ ...state, activeBoard: board }))
+  }
 }
