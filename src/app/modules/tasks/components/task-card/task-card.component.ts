@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
+import { Task } from '@tasks/interfaces/tasks.interface'
 
 @Component({
   selector: 'task-card',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   templateUrl: './task-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TaskCardComponent {}
+export class TaskCardComponent {
+  task = input.required<Task>()
+}

@@ -1,1 +1,14 @@
-<p>column works!</p>
+@let tasks = column().tasks;
+
+<div class="mb-6 flex items-center gap-2">
+  <div class="h-4 w-4 rounded-full bg-[#49C4E5]"></div>
+  <span class="text-theme-gray-light font-bold tracking-widest">
+    {{ column().name | uppercase }} ({{ tasks.length }})
+  </span>
+</div>
+
+<section class="flex h-[calc(100dvh-12rem)] flex-col gap-4 overflow-y-auto pb-4">
+  @for (task of tasks; track task.id) {
+    <task-card [task]="task"></task-card>
+  }
+</section>
