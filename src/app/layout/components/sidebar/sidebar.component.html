@@ -1,25 +1,27 @@
 <aside
-  class="bg-theme-white dark:bg-theme-charcoal border-theme-light-blue dark:border-theme-gray-dark relative flex w-72 flex-col gap-6 rounded-lg p-6 md:h-full md:rounded-none md:border-r">
-  <p class="text-theme-gray-light text-sm font-bold tracking-widest">ALL BOARDS ({{ boards().length }})</p>
+  class="bg-theme-white dark:bg-theme-charcoal border-theme-light-blue dark:border-theme-gray-dark relative flex w-72 flex-col gap-6 rounded-lg pt-6 md:h-full md:rounded-none md:border-r">
+  <p class="text-theme-gray-light px-6 text-sm font-bold tracking-widest">ALL BOARDS ({{ boards().length }})</p>
   <board-list></board-list>
 
-  <section
-    class="bg-theme-light-gray dark:bg-theme-darker text-theme-gray-light flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 md:mt-auto">
-    <sun-icon></sun-icon>
-    <div
-      class="bg-theme-primary hover:bg-theme-secondary flex h-7 w-12 cursor-pointer items-center rounded-2xl p-1 transition-colors"
-      (click)="darkModeService.toggleDarkMode()">
+  <section class="p-6">
+    <section
+      class="bg-theme-light-gray dark:bg-theme-darker text-theme-gray-light flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 md:mt-auto">
+      <sun-icon></sun-icon>
       <div
-        class="bg-theme-white h-5 w-5 rounded-full transition-transform"
-        [class]="{ 'translate-x-5': darkMode() }"></div>
-    </div>
-    <moon-icon></moon-icon>
-  </section>
+        class="bg-theme-primary hover:bg-theme-secondary flex h-7 w-12 cursor-pointer items-center rounded-2xl p-1 transition-colors"
+        (click)="darkModeService.toggleDarkMode()">
+        <div
+          class="bg-theme-white h-5 w-5 rounded-full transition-transform"
+          [class]="{ 'translate-x-5': darkMode() }"></div>
+      </div>
+      <moon-icon></moon-icon>
+    </section>
 
-  <section
-    class="sidebar-hover before:hover:bg-theme-primary/10 dark:before:hover:bg-theme-white text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white relative hidden cursor-pointer items-center gap-2 rounded-r-full p-3 md:flex"
-    (click)="sidebarService.toggleSidebar()">
-    <hide-icon></hide-icon>
-    <p class="text-sm font-bold">Hide Sidebar</p>
+    <section
+      class="sidebar-hover before:hover:bg-theme-primary/10 dark:before:hover:bg-theme-white text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white relative hidden cursor-pointer items-center gap-2 rounded-r-full p-3 md:flex"
+      (click)="sidebarService.toggleSidebar()">
+      <hide-icon></hide-icon>
+      <p class="text-sm font-bold">Hide Sidebar</p>
+    </section>
   </section>
 </aside>
