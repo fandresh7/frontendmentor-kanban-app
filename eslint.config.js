@@ -15,6 +15,10 @@ module.exports = tseslint.config(
       eslintPluginPrettierRecommended
     ],
     processor: angular.processInlineTemplates,
+    rules: {
+      "@angular-eslint/directive-selector": "off",
+      "@angular-eslint/component-selector": "off"
+    }
   },
   {
     files: ["**/*.html"],
@@ -22,6 +26,10 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
       eslintPluginPrettierRecommended
-    ]
+    ],
+    rules: {
+      "@angular-eslint/template/interactive-supports-focus": "off",
+      "@angular-eslint/template/click-events-have-key-events": "off" 
+    }
   }
-);
+)
