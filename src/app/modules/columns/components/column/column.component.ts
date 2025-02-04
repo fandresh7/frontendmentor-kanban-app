@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, input } from '@angular/core'
+import { Column } from '@columns/interfaces/columns.interface'
 
 @Component({
   selector: 'column',
@@ -6,4 +7,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core'
   templateUrl: './column.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ColumnComponent {}
+export class ColumnComponent {
+  column = input.required<Column>()
+}

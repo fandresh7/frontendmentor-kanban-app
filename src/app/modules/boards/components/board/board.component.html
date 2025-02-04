@@ -1,1 +1,15 @@
-<p>board works!</p>
+@let board = activeBoard();
+
+@if (board && columns().length > 0) {
+  <section class="grid w-full auto-cols-[280px] grid-flow-col items-stretch justify-stretch gap-4 overflow-x-auto">
+    @for (column of columns(); track column.id) {
+      <column [column]="column"></column>
+    }
+
+    <column-add></column-add>
+  </section>
+} @else {
+  <section class="grid h-full w-full place-items-center text-center">
+    <empty-board></empty-board>
+  </section>
+}

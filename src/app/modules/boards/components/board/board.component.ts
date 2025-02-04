@@ -1,9 +1,20 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { BoardsStore } from '@boards/store/boards.store'
+import { EmptyBoardComponent } from '../empty-board/empty-board.component'
+import { ColumnComponent } from '@columns/components/column/column.component'
+import { ColumnAddComponent } from '@columns/components/column-add/column-add.component'
+import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'board',
-  imports: [],
+  imports: [EmptyBoardComponent, ColumnComponent, ColumnAddComponent],
   templateUrl: './board.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BoardComponent {}
+export class BoardComponent {
+  boardsStore = inject(BoardsStore)
+  columnsStore = inject(ColumnsStore)
+
+  activeBoard = computed(() => this.boardsStore.activeBoard())
+  columns = computed(() => this.columnsStore.columns())
+}
