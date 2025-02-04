@@ -1,2 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui;
+  --color-theme-dark: #000112;
+  --color-theme-darker: #20212C;
+  --color-theme-charcoal: #2B2C37;
+  --color-theme-gray-dark: #3E3F4E;
+  --color-theme-gray-light: #828FA3;
+  --color-theme-light-blue: #E4EBFA;
+  --color-theme-light-gray: #F4F7FD;
+  --color-theme-white: #FFFFFF;
+  --color-theme-primary: #635FC7;
+  --color-theme-secondary: #A8A4FF;
+  --color-theme-red-dark: #EA5555;
+  --color-theme-red-light: #FF9898;
+  --bg-custom-gradient: linear-gradient(to right, rgba(233, 239, 250, 1) 0%, rgba(233, 239, 250, 0.5) 100%);
+  --bg-custom-gradient-dark: linear-gradient(180deg, rgba(43,44,55,1) 100%, rgba(43,44,55,0.5) 100%);
+}
