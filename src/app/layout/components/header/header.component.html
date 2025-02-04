@@ -1,1 +1,26 @@
-<p>header works!</p>
+<header class="bg-theme-white dark:bg-theme-charcoal flex max-h-24 items-stretch">
+  <div
+    class="border-theme-light-blue dark:border-theme-gray-dark flex items-center gap-4 p-4 pr-0 md:border-r md:p-6 md:pr-6"
+    [ngClass]="{ 'md:w-72': sidebar(), 'w-auto md:border-b': !sidebar() }">
+    <logo-icon></logo-icon>
+    <p class="hidden text-3xl font-extrabold md:block">Kanban</p>
+  </div>
+
+  <div
+    class="text-theme-dark dark:text-theme-white border-theme-light-blue dark:border-theme-gray-dark flex grow items-center gap-2 p-4 font-bold md:border-b md:p-6">
+    <span
+      class="block text-lg md:hidden"
+      (click)="sidebarService.toggleSidebar()">
+      {{ activeBoard()?.name ?? 'Default' }}
+    </span>
+    <span class="hidden md:block md:text-2xl">{{ activeBoard()?.name }}</span>
+
+    <div
+      class="text-theme-primary transition-transform duration-500 md:hidden"
+      [class]="{ 'rotate-180': sidebar() }">
+      <down-arrow-icon></down-arrow-icon>
+    </div>
+
+    <actions></actions>
+  </div>
+</header>

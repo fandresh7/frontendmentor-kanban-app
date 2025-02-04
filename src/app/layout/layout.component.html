@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<main-header></main-header>
+
+<sidebar
+  class="absolute top-20 right-0 left-0 z-10 mx-auto w-max overflow-hidden transition-[width] duration-500 ease-in-out md:static"
+  [ngClass]="{
+    'hidden md:block md:w-0': !sidebar(),
+    'block md:w-72': sidebar()
+  }">
+</sidebar>
+
+<main class="relative h-full overflow-y-auto p-6">
+  @if (sidebar()) {
+    <!-- background when sidebar is open in mobile -->
+    <div
+      class="absolute top-0 left-0 block h-full w-full bg-black/50 md:hidden"
+      (click)="sidebarService.toggleSidebar()"></div>
+  }
+
+  @if (!sidebar()) {
+    <!-- show sidebar -->
+    <section
+      class="text-theme-white bg-theme-primary hover:bg-theme-secondary absolute bottom-8 left-0 hidden cursor-pointer items-center justify-center rounded-r-full p-4 pl-3 transition-colors md:flex"
+      (click)="sidebarService.toggleSidebar()">
+      <show-icon></show-icon>
+    </section>
+  }
+
+  <router-outlet></router-outlet>
+  <p>dfgadgsd</p>
+  <p>dfgadgsd</p>
+  <p>dfgadgsd</p>
+  <p>dfgadgsd</p>
+  <p>dfgadgsd</p>
+</main>
