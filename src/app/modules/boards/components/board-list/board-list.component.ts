@@ -46,7 +46,11 @@ export class BoardListComponent {
 
   openAddEditModal() {
     this.sidebarService.closeSidebar()
-    this.dialog.open(BoardAddEditModalComponent)
+    this.dialog.open(BoardAddEditModalComponent, {
+      data: {
+        type: 'new'
+      }
+    })
   }
 
   changeActiveBoard(board: Board) {

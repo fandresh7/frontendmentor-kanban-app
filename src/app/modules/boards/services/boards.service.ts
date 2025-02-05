@@ -21,19 +21,23 @@ export class BoardsService {
     return boards
   }
 
-  async createBoard(board: Partial<Board>): Promise<Board> {
+  async createBoard(board: Partial<Board>, columns?: string[]): Promise<Board> {
     const url = `${this.baseUrl}/api/boards`
 
-    const response$ = this.http.post<CreateBoardResponse>(url, board)
+    const body = { ...board, columns }
+
+    const response$ = this.http.post<CreateBoardResponse>(url, body)
     const response = await firstValueFrom(response$)
 
     return response.board
   }
 
-  async updateBoard(id: string, board: Partial<Board>) {
+  async updateBoard(id: string, board: Partial<Board>, columns?: string[]) {
     const url = `${this.baseUrl}/api/boards/${id}`
 
-    const response$ = this.http.patch<CreateBoardResponse>(url, board)
+    const body = { ...board, columns }
+
+    const response$ = this.http.patch<CreateBoardResponse>(url, body)
     const response = await firstValueFrom(response$)
 
     return response.board

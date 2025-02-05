@@ -39,21 +39,23 @@ export class BoardsStore {
     }
   }
 
-  async createBoard(boardData: Partial<Board>): Promise<void> {
+  async createBoard(boardData: Partial<Board>, columns?: string[]): Promise<Board> {
     this.updateLoadingState(true)
 
     try {
-      const newBoard = await this.boardsService.createBoard(boardData as Board)
+      const newBoard = await this.boardsService.createBoard(boardData as Board, columns)
       this.addNewBoardToStore(newBoard)
+
+      return newBoard
     } finally {
       this.updateLoadingState(false)
     }
   }
 
-  async updateBoard(id: string, changes: Partial<Board>): Promise<void> {
+  async updateBoard(id: string, board: Partial<Board>, columns?: string[]): Promise<void> {
     this.updateLoadingState(true)
     try {
-      const updatedBoard = await this.boardsService.updateBoard(id, changes)
+      const updatedBoard = await this.boardsService.updateBoard(id, board, columns)
       this.updateBoardToStore(id, updatedBoard)
     } finally {
       this.updateLoadingState(false)
@@ -107,7 +109,7 @@ export class BoardsStore {
     const currentBoards = new Map(this.state().boards)
     currentBoards.delete(id)
 
-    this.state.set({ ...this.state(), boards: currentBoards })
+    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: null })
   }
 
   private updateLoadingState(loading: boolean): void {
