@@ -1,6 +1,7 @@
 import { DialogRef } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
 import { BoardsStore } from '@boards/store/boards.store'
+import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'board-delete-modal',
@@ -14,8 +15,11 @@ import { BoardsStore } from '@boards/store/boards.store'
 export class BoardDeleteModalComponent {
   dialogRef = inject(DialogRef<BoardDeleteModalComponent>)
   boardsStore = inject(BoardsStore)
+  columnsStore = inject(ColumnsStore)
 
   activeBoard = computed(() => this.boardsStore.activeBoard())
+
+  loading = signal<boolean>(false)
 
   closeModal() {
     this.dialogRef.close()
@@ -25,7 +29,12 @@ export class BoardDeleteModalComponent {
     const board = this.activeBoard()
     if (!board) return
 
+    this.loading.set(true)
+
     await this.boardsStore.deleteBoard(board.id)
+    this.columnsStore.resetStore()
+
+    this.loading.set(false)
     this.dialogRef.close()
   }
 }

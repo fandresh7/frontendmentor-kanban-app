@@ -21,6 +21,8 @@
       <down-arrow-icon></down-arrow-icon>
     </div>
 
-    <actions></actions>
+    @if (activeBoard()) {
+      <actions></actions>
+    }
   </div>
 </header>

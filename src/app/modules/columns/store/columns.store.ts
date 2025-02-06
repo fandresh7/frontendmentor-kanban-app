@@ -38,7 +38,7 @@ export class ColumnsStore {
     }
   }
 
-  private resetStore() {
+  resetStore() {
     this.state.set({
       columns: new Map<string, Column>(),
       loading: false,

@@ -7,13 +7,11 @@
   </div>
 </button>
 
-@if (activeBoard()) {
-  <button
-    class="text-theme-gray-light hover:text-theme-primary hover:bg-theme-light-gray dark:hover:bg-theme-darker relative rounded-full px-4 py-2 transition-colors"
-    (click)="toggleActionDropdown()">
-    <ellipsis-icon></ellipsis-icon>
-  </button>
-}
+<button
+  class="text-theme-gray-light hover:text-theme-primary hover:bg-theme-light-gray dark:hover:bg-theme-darker relative rounded-full px-4 py-2 transition-colors"
+  (click)="toggleActionDropdown()">
+  <ellipsis-icon></ellipsis-icon>
+</button>
 
 @if (actionDropdown()) {
   <div
