@@ -70,6 +70,12 @@
     type="submit"
     class="bg-theme-primary text-theme-white hover:bg-theme-secondary disabled:bg-theme-primary/20 w-full rounded-full px-8 py-2 text-sm leading-6 font-medium transition disabled:cursor-not-allowed"
     [disabled]="loading()">
-    {{ data.type === 'new' ? 'Create Board' : 'Save Changes' }}
+    @if (loading()) {
+      <span>Loading...</span>
+    } @else if (data.type === 'new') {
+      <span>Create Board</span>
+    } @else {
+      <span>Save Changes</span>
+    }
   </button>
 </form>

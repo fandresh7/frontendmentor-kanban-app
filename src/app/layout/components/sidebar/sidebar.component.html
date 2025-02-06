@@ -3,7 +3,7 @@
   <p class="text-theme-gray-light px-6 text-sm font-bold tracking-widest">ALL BOARDS ({{ boards().length }})</p>
   <board-list></board-list>
 
-  <section class="p-6">
+  <section class="mt-auto flex flex-col gap-2 p-6">
     <section
       class="bg-theme-light-gray dark:bg-theme-darker text-theme-gray-light flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 md:mt-auto">
       <sun-icon></sun-icon>
@@ -18,7 +18,7 @@
     </section>
 
     <section
-      class="sidebar-hover before:hover:bg-theme-primary/10 dark:before:hover:bg-theme-white text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 dark:hover:bg-theme-white relative hidden cursor-pointer items-center gap-2 rounded-r-full p-3 md:flex"
+      class="sidebar-hover hover:bg-theme-primary/10 hover:before:bg-theme-primary/10 dark:hover:before:bg-theme-white dark:hover:bg-theme-white text-theme-gray-light hover:text-theme-primary relative hidden cursor-pointer items-center gap-2 rounded-r-full p-3 md:flex"
       (click)="sidebarService.toggleSidebar()">
       <hide-icon></hide-icon>
       <p class="text-sm font-bold">Hide Sidebar</p>

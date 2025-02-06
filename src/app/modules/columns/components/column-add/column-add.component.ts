@@ -7,6 +7,7 @@ import { plusIconComponent } from '@shared/components/icons/icons.component'
   selector: 'column-add',
   imports: [plusIconComponent],
   templateUrl: './column-add.component.html',
+  styleUrls: ['./column-add.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'pt-12'
