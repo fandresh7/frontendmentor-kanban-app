@@ -1,5 +1,5 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, computed, inject, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { BoardsStore } from '@boards/store/boards.store'
 import { ColumnsStore } from '@columns/store/columns.store'
@@ -32,6 +32,8 @@ export class BoardAddEditModalComponent implements OnInit {
   activeBoard = computed(() => this.boardsStore.activeBoard())
   currentColumns = computed(() => this.columnsStore.columns())
 
+  loading = signal<boolean>(false)
+
   form = this.fb.group<BoardForm>({
     name: new FormControl('', {
       nonNullable: true,
@@ -59,14 +61,18 @@ export class BoardAddEditModalComponent implements OnInit {
     if (this.columns.length > 1) this.columns.removeAt(index)
   }
 
-  submit() {
+  async submit() {
     if (this.form.invalid) return
 
+    this.loading.set(true)
+
     if (this.data.type === 'new') {
-      this.createBoard()
+      await this.createBoard()
     } else {
-      this.editBoard()
+      await this.editBoard()
     }
+
+    this.loading.set(true)
   }
 
   async createBoard() {

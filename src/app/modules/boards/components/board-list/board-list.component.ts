@@ -30,6 +30,7 @@ export class BoardListComponent {
 
   boards = computed(() => this.boardsStore.boards())
   activeBoard = computed(() => this.boardsStore.activeBoard())
+  loading = computed(() => this.boardsStore.loading())
 
   @HostListener('scroll', ['$event'])
   onScroll(event: Event): void {

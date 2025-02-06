@@ -1,15 +1,19 @@
-@for (board of boards(); track board.id) {
-  <div
-    class="text-theme-white relative flex cursor-pointer items-center gap-3 rounded-r-full p-3"
-    [ngClass]="{
-      'board-active bg-theme-primary text-theme-white before:bg-theme-primary': board.id === activeBoard()?.id,
-      'board-hover text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 hover:before:bg-theme-primary/10 dark:hover:before:bg-theme-white dark:hover:bg-theme-white':
-        board.id !== activeBoard()?.id
-    }"
-    (click)="changeActiveBoard(board)">
-    <board-icon></board-icon>
-    <p class="font-bold">{{ board.name }}</p>
-  </div>
+@defer (when !loading()) {
+  @for (board of boards(); track board.id) {
+    <div
+      class="text-theme-white relative flex cursor-pointer items-center gap-3 rounded-r-full p-3"
+      [ngClass]="{
+        'board-active bg-theme-primary text-theme-white before:bg-theme-primary': board.id === activeBoard()?.id,
+        'board-hover text-theme-gray-light hover:text-theme-primary hover:bg-theme-primary/10 hover:before:bg-theme-primary/10 dark:hover:before:bg-theme-white dark:hover:bg-theme-white':
+          board.id !== activeBoard()?.id
+      }"
+      (click)="changeActiveBoard(board)">
+      <board-icon></board-icon>
+      <p class="font-bold">{{ board.name }}</p>
+    </div>
+  }
+} @placeholder {
+  <div class="border-theme-primary mx-auto h-10 w-10 animate-spin rounded-full border-[5px] border-t-transparent"></div>
 }
 
 <div

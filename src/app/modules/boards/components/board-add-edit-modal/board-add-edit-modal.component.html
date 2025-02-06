@@ -68,7 +68,8 @@
 
   <button
     type="submit"
-    class="bg-theme-primary text-theme-white hover:bg-theme-secondary w-full rounded-full px-8 py-2 text-sm leading-6 font-medium transition">
+    class="bg-theme-primary text-theme-white hover:bg-theme-secondary disabled:bg-theme-primary/20 w-full rounded-full px-8 py-2 text-sm leading-6 font-medium transition disabled:cursor-not-allowed"
+    [disabled]="loading()">
     {{ data.type === 'new' ? 'Create Board' : 'Save Changes' }}
   </button>
 </form>
