@@ -6,10 +6,16 @@ export interface ColumnsResponse {
   total: number
 }
 
+export interface CreateColumnResponse {
+  ok: boolean
+  column: Column
+}
+
 export interface Column {
   id: string
   name: string
   tasks: Task[]
+  order: number
 }
 
 export interface GetColumnsParams {

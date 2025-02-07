@@ -16,6 +16,10 @@ export class ColumnAddComponent {
   dialog = inject(Dialog)
 
   openModal() {
-    this.dialog.open(ColumnAddEditModalComponent)
+    this.dialog.open(ColumnAddEditModalComponent, {
+      data: {
+        type: 'new'
+      }
+    })
   }
 }

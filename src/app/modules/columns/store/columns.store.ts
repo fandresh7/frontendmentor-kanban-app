@@ -38,6 +38,19 @@ export class ColumnsStore {
     }
   }
 
+  async createColumn(boardId: string, columnData: Partial<Column>): Promise<Column> {
+    this.updateLoadingState(true)
+
+    try {
+      const newColumn = await this.columnsService.createColumn(boardId, columnData as Column)
+      this.addNewColumnToStore(newColumn)
+
+      return newColumn
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
   resetStore() {
     this.state.set({
       columns: new Map<string, Column>(),
@@ -55,6 +68,13 @@ export class ColumnsStore {
       loading: false,
       currentPage: nextPage
     })
+  }
+
+  private addNewColumnToStore(column: Column): void {
+    const currentColumns = new Map(this.state().columns)
+    currentColumns.set(column.id, column)
+
+    this.state.set({ ...this.state(), columns: currentColumns })
   }
 
   private updateLoadingState(loading: boolean): void {
