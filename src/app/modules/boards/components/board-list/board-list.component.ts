@@ -8,7 +8,6 @@ import { BoardAddEditModalComponent } from '../board-add-edit-modal/board-add-ed
 
 import { SidebarService } from '@shared/services/sidebar.service'
 import { BoardIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
-import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'board-list',
@@ -26,7 +25,6 @@ export class BoardListComponent {
 
   sidebarService = inject(SidebarService)
   boardsStore = inject(BoardsStore)
-  columnsStore = inject(ColumnsStore)
 
   boards = computed(() => this.boardsStore.boards())
   activeBoard = computed(() => this.boardsStore.activeBoard())
@@ -56,6 +54,5 @@ export class BoardListComponent {
 
   changeActiveBoard(board: Board) {
     this.boardsStore.changeActiveBoard(board)
-    this.columnsStore.loadColumns(board.id, true)
   }
 }

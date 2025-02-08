@@ -1,9 +1,8 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Column } from '@columns/interfaces/columns.interface'
+import { BoardsStore } from '@boards/store/boards.store'
 
-import { ColumnsStore } from '@columns/store/columns.store'
 import { CloseIconComponent } from '@shared/components/icons/icons.component'
 
 @Component({
@@ -21,9 +20,10 @@ export class ColumnAddEditModalComponent {
   dialogRef = inject(DialogRef<ColumnAddEditModalComponent>)
   data = inject(DIALOG_DATA)
 
-  loading = signal<boolean>(false)
+  boardsStore = inject(BoardsStore)
+  activeBoard = computed(() => this.boardsStore.activeBoard())
 
-  columnsStore = inject(ColumnsStore)
+  loading = signal<boolean>(false)
 
   form = this.fb.group({
     name: new FormControl('', {
@@ -31,10 +31,6 @@ export class ColumnAddEditModalComponent {
       validators: [Validators.required]
     })
   })
-
-  closeModal() {
-    this.dialogRef.close()
-  }
 
   async submit() {
     if (this.form.invalid) return
@@ -51,16 +47,18 @@ export class ColumnAddEditModalComponent {
   }
 
   async createColumn() {
-    const boardId = this.data.boardId
-    const data = this.form.value as Partial<Column>
+    const activeBoard = this.activeBoard()
+    if (!activeBoard) return
 
-    const newColumn = await this.columnsStore.createColumn(boardId, data)
-
-    console.log('here', newColumn)
-    this.dialogRef.close()
+    await this.boardsStore.createColumn(activeBoard.id, this.form.value)
+    this.closeModal()
   }
 
   async updateColumn() {
     console.log('updateColumn')
+  }
+
+  closeModal() {
+    this.dialogRef.close()
   }
 }

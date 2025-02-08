@@ -1,10 +1,10 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
-import { BoardsStore } from '@boards/store/boards.store'
-import { ColumnsStore } from '@columns/store/columns.store'
-import { CloseIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
+
 import { TaskAddEditModalComponent } from '@tasks/components/task-add-edit-modal/task-add-edit-modal.component'
+import { BoardsStore } from '@boards/store/boards.store'
+import { CloseIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
 
 interface BoardForm {
   name: FormControl<string>
@@ -27,10 +27,7 @@ export class BoardAddEditModalComponent implements OnInit {
   data = inject(DIALOG_DATA)
 
   boardsStore = inject(BoardsStore)
-  columnsStore = inject(ColumnsStore)
-
   activeBoard = computed(() => this.boardsStore.activeBoard())
-  currentColumns = computed(() => this.columnsStore.columns())
 
   loading = signal<boolean>(false)
 
@@ -49,7 +46,7 @@ export class BoardAddEditModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.type === 'edit') {
       this.form.controls.name.setValue(this.activeBoard()!.name)
-      this.currentColumns().forEach(column => this.addNewColumnField(column.name))
+      this.activeBoard()?.columns.forEach(column => this.addNewColumnField(column.name))
     }
   }
 
@@ -79,10 +76,8 @@ export class BoardAddEditModalComponent implements OnInit {
     const { columns, ...board } = this.form.value
     if (!board) return
 
-    const newBoard = await this.boardsStore.createBoard(board, columns)
-
-    this.columnsStore.loadColumns(newBoard.id, true)
-    this.dialogRef.close()
+    await this.boardsStore.createBoard(board, columns)
+    this.closeModal()
   }
 
   async editBoard() {
@@ -93,9 +88,7 @@ export class BoardAddEditModalComponent implements OnInit {
     if (!board) return
 
     await this.boardsStore.updateBoard(activeBoard.id, board, columns)
-
-    this.columnsStore.loadColumns(activeBoard.id, true)
-    this.dialogRef.close()
+    this.closeModal()
   }
 
   closeModal() {

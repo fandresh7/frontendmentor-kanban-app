@@ -1,3 +1,5 @@
+import { Column } from '@columns/interfaces/columns.interface'
+
 export interface BoardsResponse {
   ok: boolean
   boards: Board[]
@@ -12,6 +14,7 @@ export interface CreateBoardResponse {
 export interface Board {
   id: string
   name: string
+  columns: Column[]
 }
 
 export interface GetBoardsParams {

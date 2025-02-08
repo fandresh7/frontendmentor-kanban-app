@@ -1,16 +1,16 @@
-@if (!activeBoard()) {
+@let board = activeBoard();
+@let columns = board?.columns ?? [];
+
+@if (!board) {
   <section class="grid h-full w-full place-items-center text-center">
     <p class="text-theme-gray-light text-lg font-bold">Please select a board from the sidebar to get started.</p>
   </section>
 }
 
-@if (isLoadingColumns()) {
-  <section class="grid h-full w-full place-items-center text-center">
-    <loading></loading>
-  </section>
-} @else if (hasColumns()) {
-  <section class="grid w-full auto-cols-[280px] grid-flow-col items-stretch justify-stretch gap-4 overflow-x-auto">
-    @for (column of columns(); track column.id) {
+@if (board && columns.length > 0) {
+  <section
+    class="grid h-full w-full auto-cols-[280px] grid-flow-col items-stretch justify-stretch gap-4 overflow-x-auto">
+    @for (column of columns; track column.id) {
       <column [column]="column"></column>
     }
     <column-add></column-add>

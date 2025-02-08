@@ -4,7 +4,6 @@ import { Task } from '@tasks/interfaces/tasks.interface'
 import { TaskAddEditModalComponent } from '../task-add-edit-modal/task-add-edit-modal.component'
 import { TaskDeleteModalComponent } from '../task-delete-modal/task-delete-modal.component'
 import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
-import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'task-details-modal',
@@ -19,8 +18,6 @@ export class TaskDetailsModalComponent {
   dialog = inject(Dialog)
   data = inject<Task>(DIALOG_DATA)
   dialogRef = inject(DialogRef<TaskDetailsModalComponent>)
-
-  columnsStore = inject(ColumnsStore)
 
   actionDropdown = signal<boolean>(false)
 

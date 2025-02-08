@@ -1,6 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core'
 import { Board, BoardsState } from '@boards/interfaces/boards.interface'
 import { BoardsService } from '@boards/services/boards.service'
+import { Column } from '@columns/interfaces/columns.interface'
+import { ColumnsService } from '@columns/services/columns.service'
 import { getLimitAndOffset } from '@shared/utils/pagination'
 
 @Injectable({
@@ -8,6 +10,7 @@ import { getLimitAndOffset } from '@shared/utils/pagination'
 })
 export class BoardsStore {
   private readonly boardsService = inject(BoardsService)
+  private readonly columnsService = inject(ColumnsService)
 
   private state = signal<BoardsState>({
     boards: new Map<string, Board>(),
@@ -56,7 +59,7 @@ export class BoardsStore {
     this.updateLoadingState(true)
     try {
       const updatedBoard = await this.boardsService.updateBoard(id, board, columns)
-      this.updateBoardToStore(id, updatedBoard)
+      this.updateBoardToStore(updatedBoard.id, updatedBoard)
     } finally {
       this.updateLoadingState(false)
     }
@@ -67,6 +70,17 @@ export class BoardsStore {
     try {
       await this.boardsService.deleteBoard(id)
       this.removeBoardFromStore(id)
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
+  async createColumn(boardId: string, column: Partial<Column>) {
+    this.updateLoadingState(true)
+
+    try {
+      const newColumn = await this.columnsService.createColumn(boardId, column)
+      this.addColumnToStore(boardId, newColumn)
     } finally {
       this.updateLoadingState(false)
     }
@@ -95,14 +109,15 @@ export class BoardsStore {
     this.state.set({ ...this.state(), boards: currentBoards, activeBoard: board })
   }
 
-  private updateBoardToStore(id: string, board: Partial<Board>) {
+  private updateBoardToStore(id: string, board: Partial<Board>): void {
     const currentBoards = new Map(this.state().boards)
     const existingBoard = currentBoards.get(id)
 
-    if (existingBoard) {
-      currentBoards.set(id, { ...existingBoard, ...board })
-      this.state.set({ ...this.state(), boards: currentBoards })
-    }
+    if (!existingBoard) return
+    const updatedBoard = { ...existingBoard, ...board }
+
+    currentBoards.set(id, updatedBoard)
+    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: updatedBoard })
   }
 
   private removeBoardFromStore(id: string): void {
@@ -110,6 +125,18 @@ export class BoardsStore {
     currentBoards.delete(id)
 
     this.state.set({ ...this.state(), boards: currentBoards, activeBoard: null })
+  }
+
+  private addColumnToStore(boardId: string, column: Column): void {
+    const currentBoards = new Map(this.state().boards)
+
+    const board = currentBoards.get(boardId)
+    if (!board) return
+
+    const updateBoard = { ...board, columns: [...board.columns, column] }
+    currentBoards.set(boardId, updateBoard)
+
+    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: updateBoard })
   }
 
   private updateLoadingState(loading: boolean): void {
