@@ -1,6 +1,7 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
+import { Column } from '@columns/interfaces/columns.interface'
 
 import { ColumnsStore } from '@columns/store/columns.store'
 import { CloseIconComponent } from '@shared/components/icons/icons.component'
@@ -35,7 +36,31 @@ export class ColumnAddEditModalComponent {
     this.dialogRef.close()
   }
 
-  submit() {
-    console.log('submit')
+  async submit() {
+    if (this.form.invalid) return
+
+    this.loading.set(true)
+
+    if (this.data.type === 'new') {
+      await this.createColumn()
+    } else {
+      await this.updateColumn()
+    }
+
+    this.loading.set(false)
+  }
+
+  async createColumn() {
+    const boardId = this.data.boardId
+    const data = this.form.value as Partial<Column>
+
+    const newColumn = await this.columnsStore.createColumn(boardId, data)
+
+    console.log('here', newColumn)
+    this.dialogRef.close()
+  }
+
+  async updateColumn() {
+    console.log('updateColumn')
   }
 }

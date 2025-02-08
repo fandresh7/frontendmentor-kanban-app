@@ -1,1 +1,8 @@
-<p>task-card works!</p>
+<article
+  class="group bg-theme-white dark:bg-theme-charcoal flex cursor-pointer flex-col gap-2 rounded-lg px-4 py-6 shadow-md"
+  (click)="openTaskModal()">
+  <h3 class="group-hover:text-theme-primary text-base font-bold transition-colors duration-300">{{ task().title }}</h3>
+  <p class="text-theme-gray-light text-sm font-bold">
+    {{ task().completedSubtasks }} of {{ task().totalSubtasks }} substasks
+  </p>
+</article>

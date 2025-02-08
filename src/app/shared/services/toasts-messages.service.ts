@@ -18,7 +18,6 @@ export class ToastsMessagesService {
   })
 
   showToast(state: SweetAlertIcon, message: string) {
-    console.log({ state, message })
     this.Toast.fire({
       icon: state,
       title: message

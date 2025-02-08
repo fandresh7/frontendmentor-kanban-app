@@ -43,6 +43,7 @@ export class ColumnsStore {
 
     try {
       const newColumn = await this.columnsService.createColumn(boardId, columnData as Column)
+      console.log({ newColumn })
       this.addNewColumnToStore(newColumn)
 
       return newColumn

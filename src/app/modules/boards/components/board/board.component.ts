@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
 import { BoardsStore } from '@boards/store/boards.store'
 import { EmptyBoardComponent } from '../empty-board/empty-board.component'
 import { ColumnComponent } from '@columns/components/column/column.component'
@@ -22,8 +22,4 @@ export class BoardComponent {
 
   isLoadingColumns = computed(() => this.activeBoard() && this.loading())
   hasColumns = computed(() => this.columns().length > 0)
-
-  constructor() {
-    effect(() => console.log({ loading: this.loading() }))
-  }
 }

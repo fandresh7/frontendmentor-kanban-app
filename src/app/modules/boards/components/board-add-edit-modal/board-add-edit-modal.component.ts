@@ -72,7 +72,7 @@ export class BoardAddEditModalComponent implements OnInit {
       await this.editBoard()
     }
 
-    this.loading.set(true)
+    this.loading.set(false)
   }
 
   async createBoard() {
