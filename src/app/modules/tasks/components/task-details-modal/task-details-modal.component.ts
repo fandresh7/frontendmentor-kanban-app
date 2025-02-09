@@ -1,11 +1,14 @@
 import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
-import { Task } from '@core/models/task.model'
-import { TaskAddEditModalComponent } from '../task-add-edit-modal/task-add-edit-modal.component'
-import { TaskDeleteModalComponent } from '../task-delete-modal/task-delete-modal.component'
-import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
+
 import { BoardsStore } from '@boards/store/boards.store'
 import { ColumnsStore } from '@columns/store/columns.store'
+
+import { TaskAddEditModalComponent } from '../task-add-edit-modal/task-add-edit-modal.component'
+import { TaskDeleteModalComponent } from '../task-delete-modal/task-delete-modal.component'
+
+import { Task } from '@core/models/task.model'
+import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
 
 @Component({
   selector: 'task-details-modal',
@@ -34,16 +37,6 @@ export class TaskDetailsModalComponent {
   })
 
   actionDropdown = signal<boolean>(false)
-
-  // subtasks = computed(() => {
-  //     const subtasks = this.task().subTasks
-  //     return subtasks
-  //   })
-
-  //   completedSubtasks = computed(() => {
-  //     const subtasks = this.task().subTasks
-  //     return subtasks.filter(subtask => subtask.isCompleted)
-  //   })
 
   getCompletedSubtasks() {
     const subtasks = this.data.subTasks
