@@ -2,6 +2,7 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { BoardsStore } from '@boards/store/boards.store'
+import { ColumnsStore } from '@columns/store/columns.store'
 
 import { CloseIconComponent } from '@shared/components/icons/icons.component'
 
@@ -20,6 +21,7 @@ export class ColumnAddEditModalComponent {
   dialogRef = inject(DialogRef<ColumnAddEditModalComponent>)
   data = inject(DIALOG_DATA)
 
+  columnsStore = inject(ColumnsStore)
   boardsStore = inject(BoardsStore)
   activeBoard = computed(() => this.boardsStore.activeBoard())
 
@@ -50,7 +52,8 @@ export class ColumnAddEditModalComponent {
     const activeBoard = this.activeBoard()
     if (!activeBoard) return
 
-    // await this.boardsStore.createColumn(activeBoard.id, this.form.value)
+    await this.columnsStore.createColumn(activeBoard.id, this.form.value)
+
     this.closeModal()
   }
 

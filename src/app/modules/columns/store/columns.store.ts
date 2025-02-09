@@ -38,6 +38,23 @@ export class ColumnsStore {
     }
   }
 
+  async createColumn(boardId: string, column: Partial<Column>) {
+    this.updateLoadingState(true)
+
+    try {
+      const newColumn = await this.columnService.createColumn(boardId, column)
+
+      const currentColumns = new Map(this.state().columns)
+      currentColumns.set(newColumn.id, newColumn)
+
+      this.state.set({ ...this.state(), columns: currentColumns })
+
+      return newColumn
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
   getBoardColumns(boardId: string) {
     const columns = this.columns()
     return columns.filter(column => column.boardId === boardId)
