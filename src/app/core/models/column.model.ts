@@ -13,10 +13,5 @@ export interface Column {
   id: string
   name: string
   order: number
-}
-
-export interface GetColumnsParams {
   boardId: string
-  limit?: number
-  offset?: number
 }

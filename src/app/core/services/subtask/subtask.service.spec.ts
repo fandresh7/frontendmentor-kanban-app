@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { BoardsService } from './boards.service'
+import { SubtaskService } from './subtask.service'
 
-describe('BoardsService', () => {
-  let service: BoardsService
+describe('SubtaskService', () => {
+  let service: SubtaskService
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(BoardsService)
+    service = TestBed.inject(SubtaskService)
   })
 
   it('should be created', () => {

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing'
 
-import { ColumnsService } from './columns.service'
+import { ColumnsStore } from './columns.store'
 
-describe('ColumnsService', () => {
-  let service: ColumnsService
+describe('ColumnsStore', () => {
+  let service: ColumnsStore
 
   beforeEach(() => {
     TestBed.configureTestingModule({})
-    service = TestBed.inject(ColumnsService)
+    service = TestBed.inject(ColumnsStore)
   })
 
   it('should be created', () => {

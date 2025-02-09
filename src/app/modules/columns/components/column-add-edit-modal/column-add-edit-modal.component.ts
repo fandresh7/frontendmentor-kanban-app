@@ -50,7 +50,7 @@ export class ColumnAddEditModalComponent {
     const activeBoard = this.activeBoard()
     if (!activeBoard) return
 
-    await this.boardsStore.createColumn(activeBoard.id, this.form.value)
+    // await this.boardsStore.createColumn(activeBoard.id, this.form.value)
     this.closeModal()
   }
 

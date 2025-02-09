@@ -2,18 +2,18 @@ import { HttpClient } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core'
 import { firstValueFrom } from 'rxjs'
 
+import { Board, BoardsResponse, CreateBoardResponse } from '@core/models/board.model'
 import { environment } from '../../../../environments/environment'
-import { Board, BoardsResponse, CreateBoardResponse, GetBoardsParams } from '@boards/interfaces/boards.interface'
 
 @Injectable({
   providedIn: 'root'
 })
-export class BoardsService {
+export class BoardService {
   private readonly http = inject(HttpClient)
   private readonly baseUrl = environment.url
 
-  async getBoards({ limit, offset }: GetBoardsParams): Promise<Board[]> {
-    const url = `${this.baseUrl}/api/boards?limit=${limit}&offset=${offset}`
+  async getBoards(): Promise<Board[]> {
+    const url = `${this.baseUrl}/api/boards`
 
     const response$ = this.http.get<BoardsResponse>(url)
     const { boards } = await firstValueFrom(response$)

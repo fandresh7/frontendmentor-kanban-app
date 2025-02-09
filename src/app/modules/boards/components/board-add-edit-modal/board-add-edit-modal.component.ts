@@ -5,6 +5,7 @@ import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } 
 import { TaskAddEditModalComponent } from '@tasks/components/task-add-edit-modal/task-add-edit-modal.component'
 import { BoardsStore } from '@boards/store/boards.store'
 import { CloseIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
+import { ColumnsStore } from '@columns/store/columns.store'
 
 interface BoardForm {
   name: FormControl<string>
@@ -26,6 +27,8 @@ export class BoardAddEditModalComponent implements OnInit {
   dialogRef = inject(DialogRef<TaskAddEditModalComponent>)
   data = inject(DIALOG_DATA)
 
+  columnsStore = inject(ColumnsStore)
+
   boardsStore = inject(BoardsStore)
   activeBoard = computed(() => this.boardsStore.activeBoard())
 
@@ -46,7 +49,9 @@ export class BoardAddEditModalComponent implements OnInit {
   ngOnInit(): void {
     if (this.data.type === 'edit') {
       this.form.controls.name.setValue(this.activeBoard()!.name)
-      this.activeBoard()?.columns.forEach(column => this.addNewColumnField(column.name))
+
+      const boardColumns = this.columnsStore.getBoardColumns(this.activeBoard()!.id)
+      boardColumns.forEach(column => this.addNewColumnField(column.name))
     }
   }
 
@@ -76,7 +81,9 @@ export class BoardAddEditModalComponent implements OnInit {
     const { columns, ...board } = this.form.value
     if (!board) return
 
-    await this.boardsStore.createBoard(board, columns)
+    const newBoard = await this.boardsStore.createBoard(board, columns)
+    this.columnsStore.loadColumns(newBoard.id)
+
     this.closeModal()
   }
 
@@ -87,7 +94,9 @@ export class BoardAddEditModalComponent implements OnInit {
     const { columns, ...board } = this.form.value
     if (!board) return
 
-    await this.boardsStore.updateBoard(activeBoard.id, board, columns)
+    const updatedBoard = await this.boardsStore.updateBoard(activeBoard.id, board, columns)
+    this.columnsStore.loadColumns(updatedBoard.id, true)
+
     this.closeModal()
   }
 

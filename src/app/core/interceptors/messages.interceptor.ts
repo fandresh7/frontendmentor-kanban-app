@@ -3,7 +3,7 @@ import { inject } from '@angular/core'
 import { delay, tap } from 'rxjs'
 
 import { ToastsMessagesService } from '@shared/services/toasts-messages.service'
-import { ErrorResponse } from '../interfaces/errors.interface'
+import { ErrorResponse } from '../models/errors.model'
 
 export const messagesInterceptor: HttpInterceptorFn = (req, next) => {
   const toastService = inject(ToastsMessagesService)

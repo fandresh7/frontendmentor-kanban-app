@@ -1,53 +1,49 @@
 import { computed, inject, Injectable, signal } from '@angular/core'
-import { Board, BoardsState } from '@boards/interfaces/boards.interface'
-import { BoardsService } from '@boards/services/boards.service'
-import { Column } from '@columns/interfaces/columns.interface'
-import { ColumnsService } from '@columns/services/columns.service'
-import { getLimitAndOffset } from '@shared/utils/pagination'
+import { BoardsState } from '@boards/interfaces/board-store.interface'
+import { Board } from '@core/models/board.model'
+import { BoardService } from '@core/services/board/board.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardsStore {
-  private readonly boardsService = inject(BoardsService)
-  private readonly columnsService = inject(ColumnsService)
+  private readonly boardService = inject(BoardService)
 
   private state = signal<BoardsState>({
     boards: new Map<string, Board>(),
     activeBoard: null,
-    loading: false,
-    currentPage: 0
+    loading: false
   })
 
   boards = computed(() => Array.from(this.state().boards.values()))
   activeBoard = computed(() => this.state().activeBoard)
   loading = computed(() => this.state().loading)
-  currentPage = computed(() => this.state().currentPage)
 
-  async loadBoards(): Promise<void> {
+  async loadBoards() {
     this.updateLoadingState(true)
 
-    const page = this.currentPage()
-    const { limit, offset } = getLimitAndOffset(page)
-
     try {
-      const newBoards = await this.boardsService.getBoards({ limit, offset })
-      if (newBoards.length > 0) {
-        this.setBoardsToStore(newBoards, page + 1)
-      } else {
-        console.log('there is not boards.')
-      }
+      const newBoards = await this.boardService.getBoards()
+
+      const boards = this.state().boards
+      newBoards.forEach(board => boards.set(board.id, board))
+
+      this.state.set({ ...this.state(), boards })
     } finally {
       this.updateLoadingState(false)
     }
   }
 
-  async createBoard(boardData: Partial<Board>, columns?: string[]): Promise<Board> {
+  async createBoard(board: Partial<Board>, columns?: string[]) {
     this.updateLoadingState(true)
 
     try {
-      const newBoard = await this.boardsService.createBoard(boardData as Board, columns)
-      this.addNewBoardToStore(newBoard)
+      const newBoard = await this.boardService.createBoard(board, columns)
+
+      const currentBoards = new Map(this.state().boards)
+      currentBoards.set(newBoard.id, newBoard)
+
+      this.state.set({ ...this.state(), boards: currentBoards, activeBoard: newBoard })
 
       return newBoard
     } finally {
@@ -55,11 +51,18 @@ export class BoardsStore {
     }
   }
 
-  async updateBoard(id: string, board: Partial<Board>, columns?: string[]): Promise<void> {
+  async updateBoard(id: string, board: Partial<Board>, columns?: string[]) {
     this.updateLoadingState(true)
+
     try {
-      const updatedBoard = await this.boardsService.updateBoard(id, board, columns)
-      this.updateBoardToStore(updatedBoard.id, updatedBoard)
+      const updatedBoard = await this.boardService.updateBoard(id, board, columns)
+
+      const currentBoards = new Map(this.state().boards)
+      currentBoards.set(id, updatedBoard)
+
+      this.state.set({ ...this.state(), boards: currentBoards, activeBoard: updatedBoard })
+
+      return updatedBoard
     } finally {
       this.updateLoadingState(false)
     }
@@ -68,78 +71,22 @@ export class BoardsStore {
   async deleteBoard(id: string): Promise<void> {
     this.updateLoadingState(true)
     try {
-      await this.boardsService.deleteBoard(id)
-      this.removeBoardFromStore(id)
+      await this.boardService.deleteBoard(id)
+
+      const currentBoards = new Map(this.state().boards)
+      currentBoards.delete(id)
+
+      this.state.set({ ...this.state(), boards: currentBoards, activeBoard: null })
     } finally {
       this.updateLoadingState(false)
     }
   }
 
-  async createColumn(boardId: string, column: Partial<Column>) {
-    this.updateLoadingState(true)
-
-    try {
-      const newColumn = await this.columnsService.createColumn(boardId, column)
-      this.addColumnToStore(boardId, newColumn)
-    } finally {
-      this.updateLoadingState(false)
-    }
-  }
-
-  changeActiveBoard(board: Board): void {
+  changeActiveBoard(board: Board) {
     this.state.set({ ...this.state(), activeBoard: board })
   }
 
-  private setBoardsToStore(boards: Board[], nextPage: number): void {
-    const currentBoards = new Map(this.state().boards)
-    boards.forEach(board => currentBoards.set(board.id, board))
-
-    this.state.set({
-      ...this.state(),
-      boards: currentBoards,
-      loading: false,
-      currentPage: nextPage
-    })
-  }
-
-  private addNewBoardToStore(board: Board): void {
-    const currentBoards = new Map(this.state().boards)
-    currentBoards.set(board.id, board)
-
-    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: board })
-  }
-
-  private updateBoardToStore(id: string, board: Partial<Board>): void {
-    const currentBoards = new Map(this.state().boards)
-    const existingBoard = currentBoards.get(id)
-
-    if (!existingBoard) return
-    const updatedBoard = { ...existingBoard, ...board }
-
-    currentBoards.set(id, updatedBoard)
-    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: updatedBoard })
-  }
-
-  private removeBoardFromStore(id: string): void {
-    const currentBoards = new Map(this.state().boards)
-    currentBoards.delete(id)
-
-    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: null })
-  }
-
-  private addColumnToStore(boardId: string, column: Column): void {
-    const currentBoards = new Map(this.state().boards)
-
-    const board = currentBoards.get(boardId)
-    if (!board) return
-
-    const updateBoard = { ...board, columns: [...board.columns, column] }
-    currentBoards.set(boardId, updateBoard)
-
-    this.state.set({ ...this.state(), boards: currentBoards, activeBoard: updateBoard })
-  }
-
-  private updateLoadingState(loading: boolean): void {
+  private updateLoadingState(loading: boolean) {
     this.state.set({ ...this.state(), loading })
   }
 }

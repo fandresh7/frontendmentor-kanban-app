@@ -15,7 +15,7 @@
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "ES2024",
     "module": "ES2022",
     "paths": {
       "@boards/*": ["./src/app/modules/boards/*"],
@@ -23,6 +23,7 @@
       "@tasks/*": ["./src/app/modules/tasks/*"],
       "@subtasks/*": ["./src/app/modules/subtasks/*"],
       "@shared/*": ["./src/app/shared/*"],
+      "@core/*": ["./src/app/core/*"],
       "@layout/*": ["./src/app/layout/*"]
     }
   },

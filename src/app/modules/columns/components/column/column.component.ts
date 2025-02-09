@@ -1,7 +1,6 @@
 import { UpperCasePipe } from '@angular/common'
 import { ChangeDetectionStrategy, Component, input } from '@angular/core'
-
-import { Column } from '@columns/interfaces/columns.interface'
+import { Column } from '@core/models/column.model'
 
 @Component({
   selector: 'column',
