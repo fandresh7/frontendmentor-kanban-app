@@ -3,6 +3,6 @@
   (click)="openTaskModal()">
   <h3 class="group-hover:text-theme-primary text-base font-bold transition-colors duration-300">{{ task().title }}</h3>
   <p class="text-theme-gray-light text-sm font-bold">
-    {{ task().completedSubtasks }} of {{ task().totalSubtasks }} substasks
+    {{ completedSubtasks().length }} of {{ subtasks().length }} substasks
   </p>
 </article>

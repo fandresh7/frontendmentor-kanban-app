@@ -6,8 +6,4 @@
   </span>
 </div>
 
-<!-- <section class="flex h-[calc(100dvh-12rem)] flex-col gap-4 overflow-y-auto pb-4">
-  @for (task of tasks; track task.id) {
-    <task-card [task]="task"></task-card>
-  }
-</section> -->
+<task-list [column]="column()"></task-list>

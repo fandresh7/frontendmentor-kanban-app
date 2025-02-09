@@ -20,11 +20,11 @@ export class ColumnsStore {
   loading = computed(() => this.state().loading)
   loadedBoardIds = computed(() => this.state().loadedBoardIds)
 
-  async loadColumns(boardId: string, forceFetch?: boolean) {
+  async loadColumns(boardId: string, forceReload?: boolean) {
     const state = this.state()
     const { columns, loadedBoardIds } = state
 
-    if (loadedBoardIds.has(boardId) && !forceFetch) return
+    if (loadedBoardIds.has(boardId) && !forceReload) return
 
     this.updateLoadingState(true)
 

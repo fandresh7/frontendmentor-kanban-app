@@ -1,9 +1,11 @@
 import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
-import { Task } from '@tasks/interfaces/tasks.interface'
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core'
+import { Task } from '@core/models/task.model'
 import { TaskAddEditModalComponent } from '../task-add-edit-modal/task-add-edit-modal.component'
 import { TaskDeleteModalComponent } from '../task-delete-modal/task-delete-modal.component'
 import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
+import { BoardsStore } from '@boards/store/boards.store'
+import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'task-details-modal',
@@ -19,7 +21,34 @@ export class TaskDetailsModalComponent {
   data = inject<Task>(DIALOG_DATA)
   dialogRef = inject(DialogRef<TaskDetailsModalComponent>)
 
+  boardsStore = inject(BoardsStore)
+  activeBoard = computed(() => this.boardsStore.activeBoard())
+
+  columnsStore = inject(ColumnsStore)
+
+  boardColumns = computed(() => {
+    const activeBoard = this.activeBoard()
+    const columns = this.columnsStore.columns()
+
+    return columns.filter(column => column.boardId === activeBoard?.id)
+  })
+
   actionDropdown = signal<boolean>(false)
+
+  // subtasks = computed(() => {
+  //     const subtasks = this.task().subTasks
+  //     return subtasks
+  //   })
+
+  //   completedSubtasks = computed(() => {
+  //     const subtasks = this.task().subTasks
+  //     return subtasks.filter(subtask => subtask.isCompleted)
+  //   })
+
+  getCompletedSubtasks() {
+    const subtasks = this.data.subTasks
+    return subtasks.filter(subtask => subtask.isCompleted)
+  }
 
   toggleActionDropdown() {
     this.actionDropdown.update(value => !value)
