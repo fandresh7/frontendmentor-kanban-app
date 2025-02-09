@@ -21,7 +21,7 @@
       <down-arrow-icon></down-arrow-icon>
     </div>
 
-    @if (activeBoard()) {
+    @if (activeBoard() && hasLoadedColumns()) {
       <actions></actions>
     }
   </div>

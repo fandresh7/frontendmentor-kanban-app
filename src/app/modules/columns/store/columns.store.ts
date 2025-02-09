@@ -18,6 +18,7 @@ export class ColumnsStore {
 
   columns = computed(() => Array.from(this.state().columns.values()))
   loading = computed(() => this.state().loading)
+  loadedBoardIds = computed(() => this.state().loadedBoardIds)
 
   async loadColumns(boardId: string, forceFetch?: boolean) {
     const state = this.state()
@@ -31,8 +32,10 @@ export class ColumnsStore {
       const newColumns = await this.columnService.getColumns(boardId)
       newColumns.forEach(column => columns.set(column.id, column))
 
-      loadedBoardIds.add(boardId)
-      this.state.set({ ...this.state(), columns, loadedBoardIds })
+      const updatedLoadedBoardIds = new Set(loadedBoardIds)
+      updatedLoadedBoardIds.add(boardId)
+
+      this.state.set({ ...this.state(), columns, loadedBoardIds: updatedLoadedBoardIds })
     } finally {
       this.updateLoadingState(false)
     }
