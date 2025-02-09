@@ -1,6 +1,6 @@
 import { HttpEvent, HttpInterceptorFn, HttpResponse } from '@angular/common/http'
 import { inject } from '@angular/core'
-import { delay, tap } from 'rxjs'
+import { tap } from 'rxjs'
 
 import { ToastsMessagesService } from '@shared/services/toasts-messages.service'
 import { ErrorResponse } from '../models/errors.model'
@@ -9,7 +9,6 @@ export const messagesInterceptor: HttpInterceptorFn = (req, next) => {
   const toastService = inject(ToastsMessagesService)
 
   return next(req).pipe(
-    delay(2000),
     tap({
       next: (event: HttpEvent<unknown>) => {
         if (event instanceof HttpResponse) {

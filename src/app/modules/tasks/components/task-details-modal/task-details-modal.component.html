@@ -32,20 +32,6 @@
 
         <span>{{ subtask.title }}</span>
       </label>
-
-      <!-- <div
-        class="bg-theme-light-gray dark:bg-theme-darker hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25 flex items-center space-x-4 rounded-md px-4 py-2.5 transition">
-        <input
-          type="checkbox"
-          [id]="subtask.id"
-          [checked]="subtask.isCompleted"
-          class="text-theme-primary accent-theme-primary checked:bg-theme-primary border-theme-gray-light/25 h-4 w-4 border focus:ring-0 focus:ring-offset-0" />
-        <label
-          [for]="subtask.id"
-          class="text-theme-dark dark:text-theme-white w-full">
-          {{ subtask.title }}
-        </label>
-      </div> -->
     }
   </div>
 
@@ -59,7 +45,7 @@
       id="dropdown-idle"
       class="text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal focus:border-theme-primary w-full rounded-md border px-4 py-2.5 focus:ring-0 focus:outline-none">
       @for (option of boardColumns(); track option.id) {
-        <option>{{ option.name }}</option>
+        <option [selected]="option.name === data.status">{{ option.name }}</option>
       }
     </select>
   </div>
