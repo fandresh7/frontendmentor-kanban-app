@@ -9,10 +9,11 @@ import { BoardAddEditModalComponent } from '../board-add-edit-modal/board-add-ed
 import { SidebarService } from '@shared/services/sidebar.service'
 import { BoardIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
 import { ColumnsStore } from '@columns/store/columns.store'
+import { LoadingComponent } from '@shared/components/loading/loading.component'
 
 @Component({
   selector: 'board-list',
-  imports: [NgClass, BoardIconComponent, plusIconComponent],
+  imports: [NgClass, BoardIconComponent, plusIconComponent, LoadingComponent],
   templateUrl: './board-list.component.html',
   styleUrls: ['./board-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
