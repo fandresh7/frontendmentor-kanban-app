@@ -3,10 +3,11 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 
 import { Task } from '@core/models/task.model'
 import { TaskDetailsModalComponent } from '../task-details-modal/task-details-modal.component'
+import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
 
 @Component({
   selector: 'task-card',
-  imports: [],
+  imports: [EllipsisIconComponent],
   templateUrl: './task-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
