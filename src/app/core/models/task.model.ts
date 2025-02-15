@@ -5,11 +5,16 @@ export interface TasksResponse {
   tasks: Task[]
 }
 
+export interface CreateTaskResponse {
+  ok: boolean
+  task: Task
+  message: string
+}
+
 export interface Task {
   id: string
   title: string
   description: string
-  status: string
-  subTasks: Subtask[]
+  subtasks: Subtask[]
   columnId: string
 }

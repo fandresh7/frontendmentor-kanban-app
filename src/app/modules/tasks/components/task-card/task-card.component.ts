@@ -16,12 +16,12 @@ export class TaskCardComponent {
   dialog = inject(Dialog)
 
   subtasks = computed(() => {
-    const subtasks = this.task().subTasks
+    const subtasks = this.task().subtasks
     return subtasks
   })
 
   completedSubtasks = computed(() => {
-    const subtasks = this.task().subTasks
+    const subtasks = this.task().subtasks
     return subtasks.filter(subtask => subtask.isCompleted)
   })
 

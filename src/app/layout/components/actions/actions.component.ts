@@ -27,7 +27,11 @@ export class ActionsComponent {
 
   openCreateTaskModal() {
     this.actionDropdown.set(false)
-    this.dialog.open(TaskAddEditModalComponent)
+    this.dialog.open(TaskAddEditModalComponent, {
+      data: {
+        type: 'new'
+      }
+    })
   }
 
   openEditBoardModal() {

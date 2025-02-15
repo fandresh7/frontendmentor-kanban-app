@@ -40,6 +40,55 @@ export class TaskStore {
     }
   }
 
+  async createTask(task: Partial<Task>) {
+    this.updateLoadingState(true)
+
+    try {
+      const newTask = await this.taskService.createTask(task)
+
+      const currentTasks = new Map(this.state().tasks)
+      currentTasks.set(newTask.id, newTask)
+
+      this.state.set({ ...this.state(), tasks: currentTasks })
+
+      return newTask
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
+  async updateTask(id: string, task: Partial<Task>) {
+    this.updateLoadingState(true)
+
+    try {
+      const updatedTask = await this.taskService.updateTask(id, task)
+
+      const currentTasks = new Map(this.state().tasks)
+      currentTasks.set(id, updatedTask)
+
+      this.state.set({ ...this.state(), tasks: currentTasks })
+
+      return updatedTask
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
+  async deleteBoard(id: string): Promise<void> {
+    this.updateLoadingState(true)
+
+    try {
+      await this.taskService.deleteTask(id)
+
+      const currentTasks = new Map(this.state().tasks)
+      currentTasks.delete(id)
+
+      this.state.set({ ...this.state(), tasks: currentTasks })
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
   private updateLoadingState(loading: boolean) {
     this.state.set({ ...this.state(), loading })
   }

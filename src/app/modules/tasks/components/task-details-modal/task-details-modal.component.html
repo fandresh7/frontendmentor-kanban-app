@@ -17,10 +17,10 @@
     <label
       for="dropdown-idle"
       class="text-theme-gray-light dark:text-theme-white block text-sm font-bold">
-      Subtasks ({{ getCompletedSubtasks().length }} of {{ data.subTasks.length }} completed)
+      Subtasks ({{ getCompletedSubtasks().length }} of {{ data.subtasks.length }} completed)
     </label>
 
-    @for (subtask of data.subTasks; track subtask.id) {
+    @for (subtask of data.subtasks; track subtask.id) {
       <label
         [for]="subtask.id"
         class="bg-theme-light-gray dark:bg-theme-darker hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25 flex items-center space-x-4 rounded-md px-4 py-2.5 transition">
@@ -45,7 +45,7 @@
       id="dropdown-idle"
       class="text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal focus:border-theme-primary w-full rounded-md border px-4 py-2.5 focus:ring-0 focus:outline-none">
       @for (option of boardColumns(); track option.id) {
-        <option [selected]="option.name === data.status">{{ option.name }}</option>
+        <option [selected]="option.id === data.columnId">{{ option.name }}</option>
       }
     </select>
   </div>

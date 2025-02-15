@@ -39,7 +39,7 @@ export class TaskDetailsModalComponent {
   actionDropdown = signal<boolean>(false)
 
   getCompletedSubtasks() {
-    const subtasks = this.data.subTasks
+    const subtasks = this.data.subtasks
     return subtasks.filter(subtask => subtask.isCompleted)
   }
 
@@ -52,7 +52,7 @@ export class TaskDetailsModalComponent {
 
     this.dialog.open(TaskAddEditModalComponent, {
       autoFocus: undefined,
-      data: this.data
+      data: { type: 'edit', task: this.data }
     })
   }
 
