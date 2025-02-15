@@ -6,6 +6,7 @@
     {{ completedSubtasks().length }} of {{ subtasks().length }} substasks
   </p>
   <button
+    cdkDragHandle
     class="text-theme-gray-light hover:text-theme-primary hover:bg-theme-light-gray dark:hover:bg-theme-darker absolute top-2 right-2 cursor-move rounded-full px-4 py-2 transition-colors"
     (click)="$event.stopPropagation()">
     <ellipsis-icon></ellipsis-icon>

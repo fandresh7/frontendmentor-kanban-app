@@ -59,8 +59,6 @@ export class TaskStore {
   }
 
   async updateTask(id: string, task: Partial<Task>) {
-    this.updateLoadingState(true)
-
     try {
       const updatedTask = await this.taskService.updateTask(id, task)
 

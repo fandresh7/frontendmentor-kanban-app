@@ -1,3 +1,14 @@
-@for (task of tasks(); track task.id) {
-  <task-card [task]="task"></task-card>
-}
+<section
+  class="flex h-[calc(100dvh-12rem)] flex-col gap-4 overflow-y-auto pb-4"
+  cdkDropList
+  [id]="column().id"
+  [cdkDropListData]="tasks()"
+  [cdkDropListConnectedTo]="columnsIds()"
+  [cdkDropListSortingDisabled]="true"
+  (cdkDropListDropped)="dropTask($event)">
+  @for (task of tasks(); track task.id) {
+    <div cdkDrag>
+      <task-card [task]="task"></task-card>
+    </div>
+  }
+</section>

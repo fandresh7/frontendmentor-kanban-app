@@ -5,10 +5,11 @@ import { ColumnsStore } from '@columns/store/columns.store'
 import { EmptyBoardComponent } from '../empty-board/empty-board.component'
 import { ColumnAddComponent } from '@columns/components/column-add/column-add.component'
 import { LoadingComponent } from '@shared/components/loading/loading.component'
+import { DragDropModule } from '@angular/cdk/drag-drop'
 
 @Component({
   selector: 'board',
-  imports: [ColumnComponent, EmptyBoardComponent, ColumnAddComponent, LoadingComponent],
+  imports: [DragDropModule, ColumnComponent, EmptyBoardComponent, ColumnAddComponent, LoadingComponent],
   templateUrl: './board.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
