@@ -15,4 +15,5 @@ import { Column } from '@core/models/column.model'
 })
 export class ColumnComponent {
   column = input.required<Column>()
+  color = input.required<string>()
 }

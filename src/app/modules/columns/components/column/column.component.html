@@ -1,5 +1,7 @@
 <div class="mb-6 flex items-center gap-2">
-  <div class="h-4 w-4 rounded-full bg-[#49C4E5]"></div>
+  <div
+    class="h-4 w-4 rounded-full"
+    [class]="color()"></div>
   <span class="text-theme-gray-light font-bold tracking-widest">
     {{ column().name | uppercase }}
   </span>

@@ -10,8 +10,11 @@
   <section
     cdkScrollable
     class="grid h-full w-full auto-cols-[280px] grid-flow-col items-stretch justify-stretch gap-4 overflow-x-auto">
-    @for (column of columns(); track column.id) {
-      <column [column]="column"></column>
+    @for (column of columns(); track column.id; let i = $index) {
+      <column
+        [column]="column"
+        [color]="getColor(i)">
+      </column>
     }
     <column-add></column-add>
   </section>

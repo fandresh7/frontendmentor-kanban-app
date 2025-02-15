@@ -27,4 +27,10 @@ export class BoardComponent {
     const boardColumns = columns.filter(column => column.boardId === activeBoard?.id)
     return boardColumns
   })
+
+  colors = ['bg-[#49C4E5]', 'bg-[#8471F2]', 'bg-[#67E2AE]', 'bg-[#F7D154]', 'bg-[#E28CCA]', 'bg-[#FD8973]']
+
+  getColor(index: number) {
+    return this.colors[index % this.colors.length]
+  }
 }
