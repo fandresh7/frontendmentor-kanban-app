@@ -74,7 +74,7 @@ export class TaskStore {
     }
   }
 
-  async deleteBoard(id: string): Promise<void> {
+  async deleteTask(id: string): Promise<void> {
     this.updateLoadingState(true)
 
     try {

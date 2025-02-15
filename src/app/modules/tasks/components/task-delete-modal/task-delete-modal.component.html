@@ -1,1 +1,19 @@
-<p>task-delete-modal works!</p>
+<div class="flex max-w-[450px] flex-col gap-6">
+  <h2 class="text-theme-red-dark text-lg font-bold">Delete this task?</h2>
+  <p class="text-theme-gray-light text-sm font-normal text-balance">
+    Are you sure you want to delete the ‘Build settings UI’ task and its subtasks? This action cannot be reversed.
+  </p>
+  <div class="flex flex-col items-center gap-4 md:flex-row">
+    <button
+      class="bg-theme-red-dark text-theme-white hover:bg-theme-red-light w-full rounded-full px-8 py-2 text-sm leading-6 font-medium transition"
+      [disabled]="loading()"
+      (click)="deleteTask()">
+      {{ loading() ? 'Loading ...' : 'Delete' }}
+    </button>
+    <button
+      class="bg-theme-primary/10 text-theme-primary hover:bg-theme-primary/25 hover:text-theme-primary dark:bg-theme-white dark:hover:bg-theme-white w-full rounded-full px-8 py-2 text-sm leading-6 font-medium transition"
+      (click)="closeModal()">
+      Cancel
+    </button>
+  </div>
+</div>
