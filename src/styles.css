@@ -20,3 +20,8 @@
   --custom-gradient: to right, rgba(233, 239, 250, 1) 0%, rgba(233, 239, 250, 0.5) 100%;
   --custom-gradient-dark: 180deg, rgba(43,44,55,1) 100%, rgba(43,44,55,0.5) 100%;
 }
+
+.swal2-toast {
+  @apply text-theme-darker! bg-theme-white! dark:bg-theme-dark! dark:text-white!;   
+}
+
