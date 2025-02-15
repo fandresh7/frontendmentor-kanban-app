@@ -21,7 +21,6 @@
       "@boards/*": ["./src/app/modules/boards/*"],
       "@columns/*": ["./src/app/modules/columns/*"],
       "@tasks/*": ["./src/app/modules/tasks/*"],
-      "@subtasks/*": ["./src/app/modules/subtasks/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@core/*": ["./src/app/core/*"],
       "@layout/*": ["./src/app/layout/*"]

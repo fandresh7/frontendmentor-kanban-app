@@ -1,0 +1,25 @@
+<label
+  [for]="subtask().id"
+  [ngClass]="{
+    'pointer-events-none opacity-50': loading(),
+    'bg-theme-light-gray dark:bg-theme-darker': !loading(),
+    'hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25': !loading()
+  }"
+  class="bg-theme-light-gray dark:bg-theme-darker hover:bg-theme-primary/25 dark:hover:bg-theme-primary/25 flex items-center space-x-4 rounded-md px-4 py-2.5 transition">
+  <input
+    type="checkbox"
+    [id]="subtask().id"
+    [(ngModel)]="subtask().isCompleted"
+    (ngModelChange)="updateSubtask($event)"
+    [checked]="subtask().isCompleted"
+    [disabled]="loading()"
+    class="accent-theme-primary border-theme-gray-light/25 h-4 w-4 border scheme-light focus:ring-0 focus:ring-offset-0 dark:scheme-dark" />
+
+  <span [ngClass]="{ 'line-through': subtask().isCompleted }">{{ subtask().title }}</span>
+
+  @if (loading()) {
+    <div class="ml-auto h-6 w-6">
+      <loading></loading>
+    </div>
+  }
+</label>

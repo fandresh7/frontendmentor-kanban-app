@@ -1,0 +1,16 @@
+<label
+  for="dropdown-idle"
+  class="text-theme-gray-light dark:text-theme-white mb-2 block text-sm font-bold">
+  Current Status
+</label>
+<select
+  id="dropdown-idle"
+  [(ngModel)]="task().columnId"
+  (ngModelChange)="onColumnChange($event)"
+  class="text-theme-dark dark:text-theme-white border-theme-gray-light/25 placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal focus:border-theme-primary w-full rounded-md border px-4 py-2.5 focus:ring-0 focus:outline-none">
+  @for (option of columns(); track option.id) {
+    <option [value]="option.id">{{ option.name }}</option>
+  }
+</select>
+
+<loading class="absolute hidden"></loading>

@@ -1,4 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core'
+import { Subtask } from '@core/models/subtask.model'
 import { Task } from '@core/models/task.model'
 import { TaskService } from '@core/services/task/task.service'
 import { TasksState } from '@tasks/interfaces/tasks-state.interface'
@@ -84,6 +85,32 @@ export class TaskStore {
       currentTasks.delete(id)
 
       this.state.set({ ...this.state(), tasks: currentTasks })
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
+  async updateSubtask(id: string, taskId: string, subtask: Partial<Subtask>) {
+    this.updateLoadingState(true)
+
+    try {
+      const updatedSubtask = await this.taskService.updateSubtask(id, taskId, subtask)
+
+      const currentTasks = new Map(this.state().tasks)
+      const task = currentTasks.get(taskId)
+
+      if (!task) return
+
+      const updatedSubtasks = task.subtasks.map(s => {
+        return s.id === id ? updatedSubtask : s
+      })
+
+      const updatedTask = { ...task, subtasks: updatedSubtasks }
+      currentTasks.set(taskId, updatedTask)
+
+      this.state.set({ ...this.state(), tasks: currentTasks })
+
+      return updatedSubtask
     } finally {
       this.updateLoadingState(false)
     }

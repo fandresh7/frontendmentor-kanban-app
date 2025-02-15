@@ -11,6 +11,12 @@ export interface CreateTaskResponse {
   message: string
 }
 
+export interface CreateSubtaskResponse {
+  ok: boolean
+  subtask: Subtask
+  message: string
+}
+
 export interface Task {
   id: string
   title: string

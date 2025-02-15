@@ -3,7 +3,8 @@ import { inject, Injectable } from '@angular/core'
 import { firstValueFrom } from 'rxjs'
 
 import { environment } from '../../../../environments/environment'
-import { CreateTaskResponse, Task, TasksResponse } from '@core/models/task.model'
+import { CreateSubtaskResponse, CreateTaskResponse, Task, TasksResponse } from '@core/models/task.model'
+import { Subtask } from '@core/models/subtask.model'
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,16 @@ export class TaskService {
     await firstValueFrom(response$)
 
     return id
+  }
+
+  async updateSubtask(id: string, taskId: string, subtask: Partial<Subtask>) {
+    const url = `${this.baseUrl}/api/subtasks/${id}`
+
+    const body = { ...subtask, taskId }
+
+    const response$ = this.http.patch<CreateSubtaskResponse>(url, body)
+    const response = await firstValueFrom(response$)
+
+    return response.subtask
   }
 }

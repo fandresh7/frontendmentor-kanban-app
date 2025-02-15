@@ -9,10 +9,12 @@ import { TaskDeleteModalComponent } from '../task-delete-modal/task-delete-modal
 
 import { Task } from '@core/models/task.model'
 import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
+import { SubtaskComponent } from '../subtask/subtask.component'
+import { TaskStatusComponent } from '../task-status/task-status.component'
 
 @Component({
   selector: 'task-details-modal',
-  imports: [EllipsisIconComponent],
+  imports: [SubtaskComponent, TaskStatusComponent, EllipsisIconComponent],
   templateUrl: './task-details-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
