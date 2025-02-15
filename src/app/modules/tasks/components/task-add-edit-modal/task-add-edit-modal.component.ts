@@ -1,6 +1,7 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog'
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core'
 import { FormArray, FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
+import { BoardsStore } from '@boards/store/boards.store'
 import { ColumnsStore } from '@columns/store/columns.store'
 import { Task } from '@core/models/task.model'
 import { CloseIconComponent, plusIconComponent } from '@shared/components/icons/icons.component'
@@ -21,8 +22,18 @@ export class TaskAddEditModalComponent implements OnInit {
   data = inject(DIALOG_DATA)
   dialogRef = inject(DialogRef<TaskAddEditModalComponent>)
 
+  boardsStore = inject(BoardsStore)
   columnsStore = inject(ColumnsStore)
-  columns = computed(() => this.columnsStore.columns())
+
+  columns = computed(() => {
+    const activeBoard = this.boardsStore.activeBoard()
+    if (!activeBoard) return []
+
+    const columns = this.columnsStore.columns()
+    const boardColums = columns.filter(column => column.boardId === activeBoard.id)
+
+    return boardColums
+  })
 
   tasksStore = inject(TaskStore)
 
