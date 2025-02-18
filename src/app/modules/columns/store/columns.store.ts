@@ -29,6 +29,10 @@ export class ColumnsStore {
     this.updateLoadingState(true)
 
     try {
+      columns.forEach(column => {
+        if (column.boardId === boardId) columns.delete(column.id)
+      })
+
       const newColumns = await this.columnService.getColumns(boardId)
       newColumns.forEach(column => columns.set(column.id, column))
 
