@@ -21,8 +21,12 @@
       <down-arrow-icon></down-arrow-icon>
     </div>
 
-    @if (activeBoard() && hasLoadedColumns()) {
-      <actions></actions>
-    }
+    <div class="ml-auto flex items-center gap-2">
+      @if (activeBoard() && hasLoadedColumns()) {
+        <actions></actions>
+      }
+
+      <user></user>
+    </div>
   </div>
 </header>

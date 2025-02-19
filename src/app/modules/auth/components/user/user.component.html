@@ -1,0 +1,26 @@
+<button
+  class="cursor-pointer"
+  type="button"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  (click)="openUserMenu()">
+  <img
+    class="h-10 w-10 rounded-full"
+    src="assets/user.png"
+    alt="sd" />
+</button>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="trigger"
+  [cdkConnectedOverlayOpen]="isOpen()"
+  (detach)="closeUserMenu()">
+  <ul
+    class="bg-theme-white dark:bg-theme-darker text-theme-gray-light mt-4 flex flex-col items-start gap-4 rounded-lg p-4 font-normal shadow-lg">
+    <li
+      (click)="logout()"
+      class="hover:text-theme-primary cursor-pointer transition-colors">
+      Logout
+    </li>
+  </ul>
+</ng-template>

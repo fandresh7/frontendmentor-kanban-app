@@ -21,9 +21,10 @@
       "@boards/*": ["./src/app/modules/boards/*"],
       "@columns/*": ["./src/app/modules/columns/*"],
       "@tasks/*": ["./src/app/modules/tasks/*"],
+      "@auth/*": ["./src/app/modules/auth/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@core/*": ["./src/app/core/*"],
-      "@layout/*": ["./src/app/layout/*"]
+      "@layout/*": ["./src/app/layout/*"],
     }
   },
   "angularCompilerOptions": {

@@ -4,6 +4,7 @@ import { environment } from '../../../../environments/environment'
 import { firstValueFrom } from 'rxjs'
 import { LoginResponse } from '@core/models/auth.model'
 import { LocalStorageService } from '@shared/services/local-storage.service'
+import { Router } from '@angular/router'
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class AuthService {
   private readonly baseUrl = environment.url
 
   private readonly localStorage = inject(LocalStorageService)
+  private readonly router = inject(Router)
 
   async login(email: string, password: string): Promise<LoginResponse> {
     const url = `${this.baseUrl}/api/auth/login`
@@ -30,5 +32,10 @@ export class AuthService {
   getIsAuthenticated(): boolean {
     const token = this.localStorage.getItem('token')
     return !!token
+  }
+
+  logout() {
+    this.localStorage.removeItem('token')
+    this.router.navigate(['/auth/login'])
   }
 }

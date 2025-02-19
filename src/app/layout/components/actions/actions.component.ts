@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
 import { Dialog } from '@angular/cdk/dialog'
+import { OverlayModule } from '@angular/cdk/overlay'
 
 import { TaskAddEditModalComponent } from '@tasks/components/task-add-edit-modal/task-add-edit-modal.component'
 import { BoardAddEditModalComponent } from '@boards/components/board-add-edit-modal/board-add-edit-modal.component'
@@ -9,7 +10,7 @@ import { EllipsisIconComponent, plusIconComponent } from '@shared/components/ico
 
 @Component({
   selector: 'actions',
-  imports: [plusIconComponent, EllipsisIconComponent],
+  imports: [OverlayModule, plusIconComponent, EllipsisIconComponent],
   templateUrl: './actions.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -18,15 +19,18 @@ import { EllipsisIconComponent, plusIconComponent } from '@shared/components/ico
 })
 export class ActionsComponent {
   dialog = inject(Dialog)
+  isOpen = signal<boolean>(false)
 
-  actionDropdown = signal<boolean>(false)
+  openBoardMenu() {
+    this.isOpen.update(value => !value)
+  }
 
-  toggleActionDropdown() {
-    this.actionDropdown.update(value => !value)
+  closeBoardMenu() {
+    this.isOpen.set(false)
   }
 
   openCreateTaskModal() {
-    this.actionDropdown.set(false)
+    this.closeBoardMenu()
     this.dialog.open(TaskAddEditModalComponent, {
       data: {
         type: 'new'
@@ -35,7 +39,7 @@ export class ActionsComponent {
   }
 
   openEditBoardModal() {
-    this.actionDropdown.set(false)
+    this.closeBoardMenu()
     this.dialog.open(BoardAddEditModalComponent, {
       data: {
         type: 'edit'
@@ -44,7 +48,7 @@ export class ActionsComponent {
   }
 
   openDeleteBoardModal() {
-    this.actionDropdown.set(false)
+    this.closeBoardMenu()
     this.dialog.open(BoardDeleteModalComponent)
   }
 }

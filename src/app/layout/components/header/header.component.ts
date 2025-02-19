@@ -4,13 +4,15 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { BoardsStore } from '@boards/store/boards.store'
 import { ActionsComponent } from '../actions/actions.component'
 
+import { ColumnsStore } from '@columns/store/columns.store'
+import { UserComponent } from '@auth/components/user/user.component'
+
 import { SidebarService } from '@shared/services/sidebar.service'
 import { ArrowDownIconComponent, LogoIconComponent } from '@shared/components/icons/icons.component'
-import { ColumnsStore } from '@columns/store/columns.store'
 
 @Component({
   selector: 'main-header',
-  imports: [NgClass, ActionsComponent, LogoIconComponent, ArrowDownIconComponent],
+  imports: [NgClass, ActionsComponent, LogoIconComponent, ArrowDownIconComponent, UserComponent],
   templateUrl: './header.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
