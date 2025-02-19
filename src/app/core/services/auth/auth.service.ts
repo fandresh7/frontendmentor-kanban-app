@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http'
-import { inject, Injectable, signal } from '@angular/core'
-import { environment } from '../../../environments/environment'
+import { inject, Injectable } from '@angular/core'
+import { environment } from '../../../../environments/environment'
 import { firstValueFrom } from 'rxjs'
 import { LoginResponse } from '@core/models/auth.model'
 import { LocalStorageService } from '@shared/services/local-storage.service'
@@ -14,8 +14,6 @@ export class AuthService {
 
   private readonly localStorage = inject(LocalStorageService)
 
-  isAuthenticated = signal<boolean>(false)
-
   async login(email: string, password: string): Promise<LoginResponse> {
     const url = `${this.baseUrl}/api/auth/login`
 
@@ -25,8 +23,12 @@ export class AuthService {
     const token = response.token
 
     this.localStorage.setItem('token', token)
-    this.isAuthenticated.set(true)
 
     return response
+  }
+
+  getIsAuthenticated(): boolean {
+    const token = this.localStorage.getItem('token')
+    return !!token
   }
 }
