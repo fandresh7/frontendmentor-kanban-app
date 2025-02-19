@@ -4,18 +4,7 @@
   <board-list></board-list>
 
   <section class="mt-auto flex flex-col gap-2 p-6">
-    <section
-      class="bg-theme-light-gray dark:bg-theme-darker text-theme-gray-light flex w-full items-center justify-center gap-2 rounded-lg px-4 py-3 md:mt-auto">
-      <sun-icon></sun-icon>
-      <div
-        class="bg-theme-primary hover:bg-theme-secondary flex h-7 w-12 cursor-pointer items-center rounded-2xl p-1 transition-colors"
-        (click)="darkModeService.toggleDarkMode()">
-        <div
-          class="bg-theme-white h-5 w-5 rounded-full transition-transform"
-          [class]="{ 'translate-x-5': darkMode() }"></div>
-      </div>
-      <moon-icon></moon-icon>
-    </section>
+    <dark-mode></dark-mode>
 
     <section
       class="sidebar-hover hover:bg-theme-primary/10 hover:before:bg-theme-primary/10 dark:hover:before:bg-theme-white dark:hover:bg-theme-white text-theme-gray-light hover:text-theme-primary relative hidden cursor-pointer items-center gap-2 rounded-r-full p-3 md:flex"

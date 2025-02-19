@@ -4,11 +4,13 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 
 import { routes } from './app.routes'
 import { messagesInterceptor } from './core/interceptors/messages.interceptor'
+import { headersInterceptor } from '@core/interceptors/headers.interceptor'
+import { authInterceptor } from '@core/interceptors/auth.interceptor'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(withFetch(), withInterceptors([messagesInterceptor]))
+    provideHttpClient(withFetch(), withInterceptors([headersInterceptor, authInterceptor, messagesInterceptor]))
   ]
 }

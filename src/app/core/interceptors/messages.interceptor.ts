@@ -22,6 +22,11 @@ export const messagesInterceptor: HttpInterceptorFn = (req, next) => {
         }
       },
       error: err => {
+        if (err.status === 401) {
+          toastService.showToast('error', 'Session expired')
+          return
+        }
+
         if (err.error?.message) {
           toastService.showToast('error', err.error.message)
         }
