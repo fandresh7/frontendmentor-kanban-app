@@ -8,17 +8,19 @@
 
   <div
     class="text-theme-dark dark:text-theme-white border-theme-light-blue dark:border-theme-gray-dark flex grow items-center gap-2 p-4 font-bold md:border-b md:p-6">
-    <span
-      class="block text-lg md:hidden"
-      (click)="sidebarService.toggleSidebar()">
-      {{ activeBoard()?.name ?? 'Default' }}
-    </span>
-    <span class="hidden md:block md:text-2xl">{{ activeBoard()?.name }}</span>
-
     <div
-      class="text-theme-primary transition-transform duration-500 md:hidden"
-      [class]="{ 'rotate-180': sidebar() }">
-      <down-arrow-icon></down-arrow-icon>
+      (click)="sidebarService.toggleSidebar()"
+      class="flex cursor-pointer items-center gap-2">
+      <span class="block text-lg md:hidden">
+        {{ activeBoard()?.name ?? 'Select Dashboard' }}
+      </span>
+      <span class="hidden md:block md:text-2xl">{{ activeBoard()?.name }}</span>
+
+      <div
+        class="text-theme-primary transition-transform duration-500 md:hidden"
+        [class]="{ 'rotate-180': sidebar() }">
+        <down-arrow-icon></down-arrow-icon>
+      </div>
     </div>
 
     <div class="ml-auto flex items-center gap-2">

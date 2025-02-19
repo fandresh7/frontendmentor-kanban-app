@@ -8,7 +8,7 @@ import { AuthService } from '@core/services/auth/auth.service'
   templateUrl: './user.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'grid place-items-center'
+    class: 'grid place-items-center h-10 w-10'
   }
 })
 export class UserComponent {
