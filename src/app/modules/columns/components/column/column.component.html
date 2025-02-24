@@ -2,9 +2,15 @@
   <div
     class="h-4 w-4 rounded-full"
     [class]="color()"></div>
+
   <span class="text-theme-gray-light font-bold tracking-widest">
     {{ column().name | uppercase }}
   </span>
+
+  <column-actions
+    class="ml-auto hidden flex-row items-center gap-2 group-hover/column:flex"
+    [column]="column()">
+  </column-actions>
 </div>
 
 <task-list [column]="column()"></task-list>

@@ -265,3 +265,55 @@ export class ArrowDownIconComponent {}
   </svg>`
 })
 export class CloseIconComponent {}
+
+@Component({
+  selector: 'edit-icon',
+  standalone: true,
+  template: `<svg
+    width="15"
+    height="15"
+    xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M11.25.875l2.875 2.875-8.875 8.875L2.375 10l8.875-8.875ZM.625 14.375l3.375-.875-2.5-2.5-.875 3.375Z"
+      fill="currentColor"
+      fill-rule="evenodd" />
+  </svg>`
+})
+export class EditIconComponent {}
+
+@Component({
+  selector: 'drag-icon',
+  standalone: true,
+  template: `<svg
+    width="15"
+    height="15"
+    xmlns="http://www.w3.org/2000/svg">
+    <g fill="currentColor">
+      <circle
+        cx="4"
+        cy="2"
+        r="1.5" />
+      <circle
+        cx="4"
+        cy="7"
+        r="1.5" />
+      <circle
+        cx="4"
+        cy="12"
+        r="1.5" />
+      <circle
+        cx="10"
+        cy="2"
+        r="1.5" />
+      <circle
+        cx="10"
+        cy="7"
+        r="1.5" />
+      <circle
+        cx="10"
+        cy="12"
+        r="1.5" />
+    </g>
+  </svg>`
+})
+export class DragIconComponent {}

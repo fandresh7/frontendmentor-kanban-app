@@ -3,14 +3,15 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core'
 
 import { TaskListComponent } from '@tasks/components/task-list/task-list.component'
 import { Column } from '@core/models/column.model'
+import { ColumnActionsComponent } from '../column-actions/column-actions.component'
 
 @Component({
   selector: 'column',
-  imports: [UpperCasePipe, TaskListComponent],
+  imports: [UpperCasePipe, TaskListComponent, ColumnActionsComponent],
   templateUrl: './column.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    class: 'max-h-full'
+    class: 'max-h-full group/column'
   }
 })
 export class ColumnComponent {
