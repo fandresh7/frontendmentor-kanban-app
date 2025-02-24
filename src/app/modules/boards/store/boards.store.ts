@@ -86,6 +86,10 @@ export class BoardsStore {
     this.state.set({ ...this.state(), activeBoard: board })
   }
 
+  resetStore() {
+    this.state.set({ activeBoard: null, boards: new Map(), loading: false })
+  }
+
   private updateLoadingState(loading: boolean) {
     this.state.set({ ...this.state(), loading })
   }

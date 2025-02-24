@@ -67,6 +67,10 @@ export class ColumnsStore {
     return columns.filter(column => column.boardId === boardId)
   }
 
+  resetStore() {
+    this.state.set({ columns: new Map(), loadedBoardIds: new Set(), loading: false })
+  }
+
   private updateLoadingState(loading: boolean) {
     this.state.set({ ...this.state(), loading })
   }

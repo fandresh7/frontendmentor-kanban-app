@@ -114,6 +114,10 @@ export class TaskStore {
     }
   }
 
+  resetStore() {
+    this.state.set({ tasks: new Map(), loadedColumnsIds: new Set(), loading: false })
+  }
+
   private updateLoadingState(loading: boolean) {
     this.state.set({ ...this.state(), loading })
   }
