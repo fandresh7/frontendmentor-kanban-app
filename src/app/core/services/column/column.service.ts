@@ -44,4 +44,13 @@ export class ColumnService {
 
     return response
   }
+
+  async deleteColumn(id: string) {
+    const url = `${this.baseUrl}/api/columns/${id}`
+
+    const response$ = this.http.delete(url)
+    await firstValueFrom(response$)
+
+    return id
+  }
 }

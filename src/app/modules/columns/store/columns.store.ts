@@ -66,6 +66,21 @@ export class ColumnsStore {
     await this.columnService.reorderColumn(id, boardId, destinationOrder)
   }
 
+  async deleteColumn(id: string): Promise<void> {
+    this.updateLoadingState(true)
+
+    try {
+      await this.columnService.deleteColumn(id)
+
+      const currentColumns = new Map(this.state().columns)
+      currentColumns.delete(id)
+
+      this.state.set({ ...this.state(), columns: currentColumns })
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
   getBoardColumns(boardId: string) {
     const columns = this.columns()
     return columns.filter(column => column.boardId === boardId)
