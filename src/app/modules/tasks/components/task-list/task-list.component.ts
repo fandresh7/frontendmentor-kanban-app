@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core'
-import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop'
+import { CdkDragDrop, DragDropModule, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop'
 
 import { Column } from '@core/models/column.model'
 import { TaskStore } from '@tasks/store/task.store'
@@ -39,7 +39,6 @@ export class TaskListComponent implements OnInit {
     const columnId = this.column().id
 
     const columnTasks = tasks.filter(task => task.columnId === columnId)
-
     return columnTasks
   })
 
@@ -58,11 +57,15 @@ export class TaskListComponent implements OnInit {
   async dropTask(event: CdkDragDrop<Task[]>) {
     const { previousContainer, container, previousIndex, currentIndex } = event
 
-    if (previousContainer === container) return
-
+    if (previousContainer.id === container.id && previousIndex === currentIndex) return
     const task = previousContainer.data[previousIndex]
-    transferArrayItem(previousContainer.data, container.data, previousIndex, currentIndex)
 
-    this.tasksStore.updateTask(task.id, { columnId: container.id })
+    if (previousContainer === container) {
+      this.tasksStore.reorderTask(task.id, currentIndex)
+      moveItemInArray(container.data, previousIndex, currentIndex)
+    } else {
+      this.tasksStore.reorderTask(task.id, currentIndex, container.id)
+      transferArrayItem(previousContainer.data, container.data, previousIndex, currentIndex)
+    }
   }
 }

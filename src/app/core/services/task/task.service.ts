@@ -40,6 +40,17 @@ export class TaskService {
     return response.task
   }
 
+  async reorderTask(taskId: string, destinationOrder: number, destinationColumnId?: string) {
+    const url = `${this.baseUrl}/api/tasks/${taskId}/reorder`
+
+    const body = { destinationOrder, destinationColumnId }
+
+    const response$ = this.http.patch<CreateTaskResponse>(url, body)
+    const response = await firstValueFrom(response$)
+
+    return response.task
+  }
+
   async deleteTask(id: string): Promise<string> {
     const url = `${this.baseUrl}/api/tasks/${id}`
 

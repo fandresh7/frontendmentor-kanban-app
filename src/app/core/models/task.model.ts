@@ -23,4 +23,5 @@ export interface Task {
   description: string
   subtasks: Subtask[]
   columnId: string
+  order: number
 }

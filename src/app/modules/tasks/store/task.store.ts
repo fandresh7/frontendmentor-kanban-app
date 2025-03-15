@@ -73,6 +73,10 @@ export class TaskStore {
     }
   }
 
+  async reorderTask(id: string, destinationOrder: number, destinationColumnId?: string) {
+    await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
+  }
+
   async deleteTask(id: string): Promise<void> {
     this.updateLoadingState(true)
 
