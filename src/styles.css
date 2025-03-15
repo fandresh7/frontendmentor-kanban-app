@@ -34,7 +34,7 @@
 }
 
 .card-drag-placeholder {
-  @apply min-h-[60px] 
+  @apply min-h-[100px] 
     border-2 
     border-dashed 
     border-theme-gray-light 
