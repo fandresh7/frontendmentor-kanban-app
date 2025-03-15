@@ -11,10 +11,11 @@ import { Task } from '@core/models/task.model'
 import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
 import { SubtaskComponent } from '../subtask/subtask.component'
 import { TaskStatusComponent } from '../task-status/task-status.component'
+import { OverlayModule } from '@angular/cdk/overlay'
 
 @Component({
   selector: 'task-details-modal',
-  imports: [SubtaskComponent, TaskStatusComponent, EllipsisIconComponent],
+  imports: [OverlayModule, SubtaskComponent, TaskStatusComponent, EllipsisIconComponent],
   templateUrl: './task-details-modal.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
@@ -38,15 +39,19 @@ export class TaskDetailsModalComponent {
     return columns.filter(column => column.boardId === activeBoard?.id)
   })
 
-  actionDropdown = signal<boolean>(false)
+  isOpen = signal<boolean>(false)
 
   getCompletedSubtasks() {
     const subtasks = this.data.subtasks
     return subtasks.filter(subtask => subtask.isCompleted)
   }
 
-  toggleActionDropdown() {
-    this.actionDropdown.update(value => !value)
+  openTaskMenu() {
+    this.isOpen.set(true)
+  }
+
+  closeTaskMenu() {
+    this.isOpen.set(false)
   }
 
   openEditTaskModal() {

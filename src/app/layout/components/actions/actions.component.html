@@ -20,6 +20,9 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
   [cdkConnectedOverlayOpen]="isOpen()"
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  (backdropClick)="closeBoardMenu()"
   (detach)="closeBoardMenu()">
   <div
     class="bg-theme-white dark:bg-theme-darker text-theme-gray-light mt-4 flex w-40 flex-col items-start gap-4 rounded-lg p-4 font-normal">

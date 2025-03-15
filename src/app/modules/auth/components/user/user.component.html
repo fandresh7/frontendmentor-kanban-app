@@ -13,6 +13,9 @@
 <ng-template
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="trigger"
+  cdkConnectedOverlayHasBackdrop
+  cdkConnectedOverlayBackdropClass="cdk-overlay-transparent-backdrop"
+  (backdropClick)="closeUserMenu()"
   [cdkConnectedOverlayOpen]="isOpen()"
   (detach)="closeUserMenu()">
   <ul
