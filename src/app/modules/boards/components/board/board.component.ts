@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
-import { DragDropModule } from '@angular/cdk/drag-drop'
+import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop'
 
 import { EmptyBoardComponent } from '../empty-board/empty-board.component'
 import { BoardsStore } from '@boards/store/boards.store'
@@ -7,6 +7,7 @@ import { ColumnComponent } from '@columns/components/column/column.component'
 import { ColumnsStore } from '@columns/store/columns.store'
 import { ColumnAddComponent } from '@columns/components/column-add/column-add.component'
 import { LoadingComponent } from '@shared/components/loading/loading.component'
+import { Column } from '@core/models/column.model'
 
 @Component({
   selector: 'board',
@@ -33,5 +34,10 @@ export class BoardComponent {
 
   getColor(index: number) {
     return this.colors[index % this.colors.length]
+  }
+
+  async drop(event: CdkDragDrop<Column[]>) {
+    console.log({ previousIndex: event.previousIndex, currentIndex: event.currentIndex })
+    moveItemInArray(this.columns(), event.previousIndex, event.currentIndex)
   }
 }

@@ -25,3 +25,26 @@
   @apply text-theme-darker! bg-theme-white! dark:bg-theme-dark! dark:text-white!;   
 }
 
+.cdk-drag-animating {
+  @apply transition-transform duration-300 ease-[cubic-bezier(0,0,0.2,1)];
+}
+
+.dragdrop-list.cdk-drop-list-dragging .dragdrop-item:not(.cdk-drag-placeholder) {
+  @apply transition-transform duration-300 ease-[cubic-bezier(0,0,0.2,1)];
+}
+
+.card-drag-placeholder {
+  @apply min-h-[60px] 
+    border-2 
+    border-dashed 
+    border-theme-gray-light 
+    bg-theme-light-gray 
+    rounded-md 
+    transition-transform 
+    duration-300 
+    ease-[cubic-bezier(0,0,0.2,1)];
+}
+
+.dark .card-drag-placeholder {
+  @apply border-theme-gray-dark bg-theme-charcoal;
+}
