@@ -34,6 +34,15 @@ export class ColumnService {
     return response.column
   }
 
+  async updateColumn(columnId: string, column: Partial<Column>): Promise<Column> {
+    const url = `${this.baseUrl}/api/columns/${columnId}`
+
+    const response$ = this.http.patch<CreateColumnResponse>(url, column)
+    const response = await firstValueFrom(response$)
+
+    return response.column
+  }
+
   async reorderColumn(columnId: string, boardId: string, destinationOrder: number) {
     const url = `${this.baseUrl}/api/columns/${columnId}/reorder`
 

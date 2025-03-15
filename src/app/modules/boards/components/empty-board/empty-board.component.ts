@@ -23,7 +23,6 @@ export class EmptyBoardComponent {
 
     this.dialog.open(ColumnAddEditModalComponent, {
       data: {
-        boardId: board.id,
         type: 'new'
       }
     })

@@ -62,6 +62,21 @@ export class ColumnsStore {
     }
   }
 
+  async updateColumn(id: string, column: Partial<Column>) {
+    try {
+      const updatedColumn = await this.columnService.updateColumn(id, column)
+      const currentColumns = new Map(this.state().columns)
+
+      currentColumns.set(id, updatedColumn)
+
+      this.state.set({ ...this.state(), columns: currentColumns })
+
+      return updatedColumn
+    } finally {
+      this.updateLoadingState(false)
+    }
+  }
+
   async reorderColumn(id: string, boardId: string, destinationOrder: number) {
     await this.columnService.reorderColumn(id, boardId, destinationOrder)
   }
