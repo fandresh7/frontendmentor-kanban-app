@@ -6,9 +6,13 @@
   [cdkDropListConnectedTo]="columnsIds()"
   [cdkDropListSortingDisabled]="true"
   (cdkDropListDropped)="dropTask($event)">
-  @for (task of tasks(); track task.id) {
-    <div cdkDrag>
-      <task-card [task]="task"></task-card>
-    </div>
+  @if (loading()) {
+    <loading></loading>
+  } @else {
+    @for (task of tasks(); track task.id) {
+      <div cdkDrag>
+        <task-card [task]="task"></task-card>
+      </div>
+    }
   }
 </section>

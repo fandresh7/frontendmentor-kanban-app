@@ -1,15 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, signal } from '@angular/core'
+import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop'
+
 import { Column } from '@core/models/column.model'
 import { TaskStore } from '@tasks/store/task.store'
-import { TaskCardComponent } from '../task-card/task-card.component'
-import { CdkDragDrop, DragDropModule, transferArrayItem } from '@angular/cdk/drag-drop'
 import { ColumnsStore } from '@columns/store/columns.store'
 import { BoardsStore } from '@boards/store/boards.store'
 import { Task } from '@core/models/task.model'
+import { LoadingComponent } from '@shared/components/loading/loading.component'
+import { TaskCardComponent } from '../task-card/task-card.component'
 
 @Component({
   selector: 'task-list',
-  imports: [DragDropModule, TaskCardComponent],
+  imports: [DragDropModule, TaskCardComponent, LoadingComponent],
   templateUrl: './task-list.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

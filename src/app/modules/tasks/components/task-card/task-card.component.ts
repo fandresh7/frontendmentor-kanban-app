@@ -4,11 +4,11 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 
 import { Task } from '@core/models/task.model'
 import { TaskDetailsModalComponent } from '../task-details-modal/task-details-modal.component'
-import { EllipsisIconComponent } from '@shared/components/icons/icons.component'
+import { DragIconComponent } from '@shared/components/icons/icons.component'
 
 @Component({
   selector: 'task-card',
-  imports: [DragDropModule, EllipsisIconComponent],
+  imports: [DragDropModule, DragIconComponent],
   templateUrl: './task-card.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
