@@ -37,10 +37,12 @@ export class LoginComponent {
 
     this.loading.set(true)
 
-    const { email, password } = this.form.getRawValue()
-    await this.authService.login(email, password)
-
-    this.loading.set(false)
-    this.router.navigate(['/'])
+    try {
+      const { email, password } = this.form.getRawValue()
+      await this.authService.login(email, password)
+      this.router.navigate(['/'])
+    } finally {
+      this.loading.set(false)
+    }
   }
 }
