@@ -37,7 +37,12 @@ export class BoardComponent {
   }
 
   async drop(event: CdkDragDrop<Column[]>) {
-    console.log({ previousIndex: event.previousIndex, currentIndex: event.currentIndex })
+    const column = event.item.data as Column
+
+    const board = this.activeBoard()
+    if (!board) return
+
+    this.columnsStore.reorderColumn(column.id, board.id, event.currentIndex)
     moveItemInArray(this.columns(), event.previousIndex, event.currentIndex)
   }
 }

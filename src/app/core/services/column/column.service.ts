@@ -33,4 +33,15 @@ export class ColumnService {
 
     return response.column
   }
+
+  async reorderColumn(columnId: string, boardId: string, destinationOrder: number) {
+    const url = `${this.baseUrl}/api/columns/${columnId}/reorder`
+
+    const body = { boardId, destinationOrder }
+
+    const response$ = this.http.patch(url, body)
+    const response = await firstValueFrom(response$)
+
+    return response
+  }
 }

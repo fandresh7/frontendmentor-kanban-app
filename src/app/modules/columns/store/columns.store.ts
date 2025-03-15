@@ -62,6 +62,10 @@ export class ColumnsStore {
     }
   }
 
+  async reorderColumn(id: string, boardId: string, destinationOrder: number) {
+    await this.columnService.reorderColumn(id, boardId, destinationOrder)
+  }
+
   getBoardColumns(boardId: string) {
     const columns = this.columns()
     return columns.filter(column => column.boardId === boardId)
