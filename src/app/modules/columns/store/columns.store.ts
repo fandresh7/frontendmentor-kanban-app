@@ -79,15 +79,6 @@ export class ColumnsStore {
 
   async reorderColumn(id: string, boardId: string, destinationOrder: number) {
     await this.columnService.reorderColumn(id, boardId, destinationOrder)
-
-    const columns = this.state().columns
-    const column = columns.get(id)
-
-    if (!column) return
-    column.order = destinationOrder
-
-    columns.set(id, column)
-    this.state.set({ ...this.state(), columns })
   }
 
   async deleteColumn(id: string): Promise<void> {
