@@ -29,6 +29,18 @@ export class AuthService {
     return response
   }
 
+  async register(name: string, email: string, password: string) {
+    const url = `${this.baseUrl}/api/auth/register`
+
+    const response$ = this.http.post<LoginResponse>(url, { name, email, password })
+    const response = await firstValueFrom(response$)
+
+    const token = response.token
+    this.localStorage.setItem('token', token)
+
+    return response
+  }
+
   getIsAuthenticated(): boolean {
     const token = this.localStorage.getItem('token')
     return !!token

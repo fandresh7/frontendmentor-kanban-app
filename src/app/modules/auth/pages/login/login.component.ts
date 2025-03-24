@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core'
 import { FormControl, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Router } from '@angular/router'
+import { Router, RouterLink } from '@angular/router'
 import { AuthService } from '@core/services/auth/auth.service'
 import { DarkModeComponent } from '@shared/components/dark-mode/dark-mode.component'
 import { LogoIconComponent } from '@shared/components/icons/icons.component'
@@ -12,7 +12,7 @@ interface LoginForm {
 
 @Component({
   selector: 'login',
-  imports: [ReactiveFormsModule, LogoIconComponent, DarkModeComponent],
+  imports: [ReactiveFormsModule, LogoIconComponent, DarkModeComponent, RouterLink],
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {

@@ -11,6 +11,19 @@
     (ngSubmit)="submit()">
     <div>
       <label
+        for="name"
+        class="text-theme-gray-light dark:text-theme-white mb-2 block text-sm font-bold">
+        Name
+      </label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+        class="border-theme-gray-light/25 text-theme-dark dark:text-theme-white placeholder:text-theme-dark/25 dark:placeholder:text-theme-white/25 dark:bg-theme-charcoal focus:border-theme-primary w-full rounded-md border px-4 py-2.5 focus:ring-0 focus:outline-none" />
+    </div>
+
+    <div>
+      <label
         for="email"
         class="text-theme-gray-light dark:text-theme-white mb-2 block text-sm font-bold">
         Email
@@ -39,17 +52,9 @@
       type="submit"
       class="bg-theme-primary text-theme-white hover:bg-theme-secondary disabled:bg-theme-primary/20 w-full cursor-pointer rounded-full px-8 py-2 text-sm leading-6 font-medium transition disabled:cursor-not-allowed"
       [disabled]="loading()">
-      {{ loading() ? 'loading...' : 'Sign In' }}
+      {{ loading() ? 'loading...' : 'Sign Up' }}
     </button>
   </form>
-
-  <div class="mt-4 text-center">
-    <a
-      class="text-theme-primary cursor-pointer text-sm hover:underline"
-      [routerLink]="['/auth', 'register']">
-      New user? Sign up
-    </a>
-  </div>
 
   <div class="mt-6 self-center">
     <dark-mode></dark-mode>
