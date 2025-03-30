@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs'
 import { LoginResponse } from '@core/models/auth.model'
 import { LocalStorageService } from '@shared/services/local-storage.service'
 import { environment } from '../../../../environments/environment'
+import { boards, columns, tasks } from '@core/data/default-data'
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class AuthService {
   async login(email: string, password: string): Promise<LoginResponse> {
     if (email === this.demoAccount.email) {
       this.localStorage.setItem('token', 'demo-token')
+      this.storeDefaultDataInLocalStorage()
       return { ok: true, user: this.demoUser, token: 'demo-token' }
     }
 
@@ -61,5 +63,15 @@ export class AuthService {
   logout() {
     this.localStorage.removeItem('token')
     window.location.reload()
+  }
+
+  private storeDefaultDataInLocalStorage() {
+    this.localStorage.removeItem('boards')
+    this.localStorage.removeItem('columns')
+    this.localStorage.removeItem('tasks')
+
+    this.localStorage.setItem('boards', JSON.stringify(boards))
+    this.localStorage.setItem('columns', JSON.stringify(columns))
+    this.localStorage.setItem('tasks', JSON.stringify(tasks))
   }
 }

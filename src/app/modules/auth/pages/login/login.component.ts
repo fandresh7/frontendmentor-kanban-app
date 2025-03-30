@@ -28,8 +28,8 @@ export class LoginComponent {
   loading = signal<boolean>(false)
 
   form = this.fb.group<LoginForm>({
-    email: this.fb.control('', Validators.required),
-    password: this.fb.control('', Validators.required)
+    email: this.fb.control('demo@demo.com', Validators.required),
+    password: this.fb.control('123456', Validators.required)
   })
 
   async submit() {
