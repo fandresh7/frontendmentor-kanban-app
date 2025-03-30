@@ -1,14 +1,14 @@
 import { computed, inject, Injectable, signal } from '@angular/core'
 import { Subtask } from '@core/models/subtask.model'
 import { Task } from '@core/models/task.model'
-import { TaskService } from '@core/services/task/task.service'
+import { TASK_SERVICE } from '@core/tokens/task.token'
 import { TasksState } from '@tasks/interfaces/tasks-state.interface'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskStore {
-  private readonly taskService = inject(TaskService)
+  private readonly taskService = inject(TASK_SERVICE)
 
   private state = signal<TasksState>({
     tasks: new Map<string, Task>(),
@@ -75,16 +75,6 @@ export class TaskStore {
 
   async reorderTask(id: string, destinationOrder: number, destinationColumnId?: string) {
     await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
-
-    const tasks = this.state().tasks
-    const task = tasks.get(id)
-
-    if (!task) return
-    task.columnId = destinationColumnId || task.columnId
-    task.order = destinationOrder
-
-    tasks.set(id, task)
-    this.state.set({ ...this.state(), tasks })
   }
 
   async deleteTask(id: string): Promise<void> {

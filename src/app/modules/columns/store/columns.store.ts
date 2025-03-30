@@ -2,13 +2,13 @@ import { computed, inject, Injectable, signal } from '@angular/core'
 import { ColumnsState } from '@columns/interfaces/columns-store.interface'
 
 import { Column } from '@core/models/column.model'
-import { ColumnService } from '@core/services/column/column.service'
+import { COLUMN_SERVICE } from '@core/tokens/column.token'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ColumnsStore {
-  private readonly columnService = inject(ColumnService)
+  private readonly columnService = inject(COLUMN_SERVICE)
 
   private state = signal<ColumnsState>({
     columns: new Map<string, Column>(),

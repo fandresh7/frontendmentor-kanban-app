@@ -1,13 +1,13 @@
 import { computed, inject, Injectable, signal } from '@angular/core'
 import { BoardsState } from '@boards/interfaces/board-store.interface'
 import { Board } from '@core/models/board.model'
-import { BoardService } from '@core/services/board/board.service'
+import { BOARD_SERVICE } from '@core/tokens/board.token'
 
 @Injectable({
   providedIn: 'root'
 })
 export class BoardsStore {
-  private readonly boardService = inject(BoardService)
+  private readonly boardService = inject(BOARD_SERVICE)
 
   private state = signal<BoardsState>({
     boards: new Map<string, Board>(),

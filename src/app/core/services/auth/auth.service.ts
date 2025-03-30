@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http'
 import { inject, Injectable } from '@angular/core'
-import { environment } from '../../../../environments/environment'
 import { firstValueFrom } from 'rxjs'
+
 import { LoginResponse } from '@core/models/auth.model'
 import { LocalStorageService } from '@shared/services/local-storage.service'
-import { Router } from '@angular/router'
+import { environment } from '../../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,16 @@ export class AuthService {
   private readonly baseUrl = environment.url
 
   private readonly localStorage = inject(LocalStorageService)
-  private readonly router = inject(Router)
+
+  private demoAccount = { email: 'demo@demo.com', password: '123456' }
+  private demoUser = { name: 'demo', email: 'demo@demo.com' }
 
   async login(email: string, password: string): Promise<LoginResponse> {
+    if (email === this.demoAccount.email) {
+      this.localStorage.setItem('token', 'demo-token')
+      return { ok: true, user: this.demoUser, token: 'demo-token' }
+    }
+
     const url = `${this.baseUrl}/api/auth/login`
 
     const response$ = this.http.post<LoginResponse>(url, { email, password })
@@ -46,8 +53,13 @@ export class AuthService {
     return !!token
   }
 
+  isDemoAccount() {
+    const token = this.localStorage.getItem('token')
+    return token === 'demo-token'
+  }
+
   logout() {
     this.localStorage.removeItem('token')
-    this.router.navigate(['/auth/login'])
+    window.location.reload()
   }
 }
