@@ -1,5 +1,5 @@
 import { Dialog } from '@angular/cdk/dialog'
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core'
+import { ChangeDetectionStrategy, Component, computed, inject, output } from '@angular/core'
 import { NgClass } from '@angular/common'
 
 import { Board } from '@core/models/board.model'
@@ -28,6 +28,8 @@ export class BoardListComponent {
   boardsStore = inject(BoardsStore)
   columnsStore = inject(ColumnsStore)
 
+  boardSelected = output<void>()
+
   boards = computed(() => this.boardsStore.boards())
   activeBoard = computed(() => this.boardsStore.activeBoard())
   loading = computed(() => this.boardsStore.loading())
@@ -48,5 +50,7 @@ export class BoardListComponent {
   async changeActiveBoard(board: Board) {
     this.boardsStore.changeActiveBoard(board)
     await this.columnsStore.loadColumns(board.id)
+
+    this.boardSelected.emit()
   }
 }

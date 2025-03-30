@@ -1,7 +1,7 @@
 <aside
   class="bg-theme-white dark:bg-theme-charcoal border-theme-light-blue dark:border-theme-gray-dark relative flex w-72 flex-col gap-6 rounded-lg pt-6 md:h-full md:rounded-none md:border-r">
   <p class="text-theme-gray-light px-6 text-sm font-bold tracking-widest">ALL BOARDS ({{ boards().length }})</p>
-  <board-list></board-list>
+  <board-list (boardSelected)="closeSidebar()"></board-list>
 
   <section class="mt-auto flex flex-col gap-2 p-6">
     <dark-mode></dark-mode>

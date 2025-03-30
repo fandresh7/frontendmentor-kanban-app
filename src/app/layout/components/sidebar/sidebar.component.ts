@@ -20,4 +20,8 @@ export class SidebarComponent {
 
   boardsStore = inject(BoardsStore)
   boards = computed(() => this.boardsStore.boards())
+
+  closeSidebar() {
+    this.sidebarService.closeSidebar()
+  }
 }
