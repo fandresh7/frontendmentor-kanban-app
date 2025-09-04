@@ -74,7 +74,12 @@ export class TaskStore {
   }
 
   async reorderTask(id: string, destinationOrder: number, destinationColumnId?: string) {
-    await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
+    const updatedTask = await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
+
+    const currentTasks = new Map(this.state().tasks)
+    currentTasks.set(id, updatedTask)
+
+    this.state.set({ ...this.state(), tasks: currentTasks })
   }
 
   async deleteTask(id: string): Promise<void> {
