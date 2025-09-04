@@ -39,7 +39,7 @@ export class TaskListComponent implements OnInit {
     const columnId = this.column().id
 
     const columnTasks = tasks.filter(task => task.columnId === columnId)
-    return columnTasks
+    return columnTasks.sort((a, b) => a.order - b.order)
   })
 
   ngOnInit(): void {

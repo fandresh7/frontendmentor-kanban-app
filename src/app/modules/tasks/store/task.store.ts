@@ -74,10 +74,24 @@ export class TaskStore {
   }
 
   async reorderTask(id: string, destinationOrder: number, destinationColumnId?: string) {
-    const updatedTask = await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
+    const originalTask = this.state().tasks.get(id)
+    if (!originalTask) return
+
+    await this.taskService.reorderTask(id, destinationOrder, destinationColumnId)
+
+    const columnsToUpdate = new Set<string>()
+    columnsToUpdate.add(originalTask.columnId)
+    if (destinationColumnId && destinationColumnId !== originalTask.columnId) {
+      columnsToUpdate.add(destinationColumnId)
+    }
 
     const currentTasks = new Map(this.state().tasks)
-    currentTasks.set(id, updatedTask)
+    for (const columnId of columnsToUpdate) {
+      const updatedColumnTasks = await this.taskService.getTasks(columnId)
+      updatedColumnTasks.forEach(task => {
+        currentTasks.set(task.id, task)
+      })
+    }
 
     this.state.set({ ...this.state(), tasks: currentTasks })
   }
